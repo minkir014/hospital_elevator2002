@@ -1,6 +1,7 @@
-#Data Structure - simulation hospital queuing system 
-	Members : 
-	1- Mohamed Tarek 
-	2- Mina Ashraf 
-	3- Omar Elzahara 
-	4- Hussien El hawary
+# Hospital Queuing System 
+This is a Hospital Queuing System , a project for Data Structure Course, created by:
+- Mohamed Tarek Abdelmohsen 
+- Hussien elhawary 
+- Omar Elzahar
+- Mina Ashraf
+
