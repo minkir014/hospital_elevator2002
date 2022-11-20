@@ -45,8 +45,7 @@ public:
 	{
 		if (isFull())
 			return false;
-		item[count] = entry;
-		count++;
+		item[count++] = entry;
 		return true;
 	}
 
@@ -54,10 +53,16 @@ public:
 	{
 		if (isEmpty())
 			return false;
-		entry = item[count];
-		//item[count] = NULL;
-		count--;
-		return true;
+		for (int i = 0; i < count; i++)
+			if (items[i] == entry)
+			{
+				T temp = items[i];
+				items[i] = items[count - 1];
+				items[count - 1] = temp;
+				count--;
+				return true;
+			}
+		return false;
 	
 	}
 	
