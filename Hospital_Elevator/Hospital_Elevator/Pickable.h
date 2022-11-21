@@ -1,5 +1,4 @@
-#pragma 
-
+#pragma once
 #include <string>
 using namespace std;
 
@@ -17,9 +16,6 @@ private:
 public:
 	Pickable(int CID, int CPriority, int CArrivaltime, string CType,int CSrcfloor,int CTrgfloor);
 	Pickable(int CID, int CArrivaltime, int CTrgfloor);
-	Pickable();
 	~Pickable();
-
-
 
 };

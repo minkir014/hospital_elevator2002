@@ -1,4 +1,3 @@
-#pragma once
 #include "Pickable.h"
 #include <string>
 using namespace std;
@@ -23,15 +22,7 @@ Pickable::Pickable(int CID, int CArrivaltime, int CTrgfloor)//constructor for vi
 	Srcfloor = 0;
 	Trgfloor = CTrgfloor;
 }
-Pickable::Pickable()
-{
-	ID = NULL;
-	Priority = NULL;
-	ArrivalTime = NULL;
-	Type = NULL;
-	Srcfloor = NULL;
-	Trgfloor = NULL;
-}
+
 Pickable::~Pickable()
 {
 }

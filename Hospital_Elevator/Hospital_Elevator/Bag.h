@@ -1,7 +1,7 @@
 #pragma once
 using namespace std;
 template <typename T>
-class ArrayBagADT
+class BagADT
 {
 public:
 	//ArrayBagADT(int cap) = 0;

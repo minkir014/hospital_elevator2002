@@ -51,6 +51,12 @@
     <ClInclude Include="QNode.h">
       <Filter>ADTs</Filter>
     </ClInclude>
+    <ClInclude Include="ArrayBag.h">
+      <Filter>ADTs</Filter>
+    </ClInclude>
+    <ClInclude Include="LinkedQueue.h">
+      <Filter>ADTs</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Event.cpp">
@@ -71,13 +77,13 @@
     <ClCompile Include="UI.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
-    <ClCompile Include="Bag.cpp">
+    <ClCompile Include="ArrayBag.cpp">
       <Filter>ADTs Implementation</Filter>
     </ClCompile>
     <ClCompile Include="Heap.cpp">
       <Filter>ADTs Implementation</Filter>
     </ClCompile>
-    <ClCompile Include="Queue.cpp">
+    <ClCompile Include="LinkedQueue.cpp">
       <Filter>ADTs Implementation</Filter>
     </ClCompile>
     <ClCompile Include="Main.cpp">

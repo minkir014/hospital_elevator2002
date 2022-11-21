@@ -1,5 +1,4 @@
-#pragma once
-#include <Bag.h>
+#include "ArrayBag.h"
 #include "Elevator.h"
 #include "Pickable.h"
 #include <string>

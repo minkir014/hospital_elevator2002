@@ -1,7 +1,7 @@
 #include<iostream>
 using namespace std;
-#include "Queue.cpp"
-#include "Bag.cpp"
+#include "ArrayBag.h"
+#include "LinkedQueue.h"
 int main() {
 	// test 
 	ArrayBag<int> q(10);
