@@ -48,6 +48,9 @@
     <ClInclude Include="Heap.h">
       <Filter>ADTs</Filter>
     </ClInclude>
+    <ClInclude Include="QNode.h">
+      <Filter>ADTs</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Event.cpp">

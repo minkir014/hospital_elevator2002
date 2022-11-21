@@ -146,6 +146,7 @@
     <ClInclude Include="Heap.h" />
     <ClInclude Include="Hospital.h" />
     <ClInclude Include="Pickable.h" />
+    <ClInclude Include="QNode.h" />
     <ClInclude Include="Queue.h" />
     <ClInclude Include="UI.h" />
   </ItemGroup>
