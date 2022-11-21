@@ -1,26 +1,17 @@
 #ifndef QUEUE_H
 #define QUEUE_H
-
 #include "QNode.h"
-
 template <typename T>
-class Queue
+class QueueADT
 {
-private:
-	QNode<T>* Front;
-	QNode<T>* Rear;
-	int count;
 public:
-	Queue();
-	~Queue();
-	void Enqueue(T value);
-	bool Dequeue(T& value);
-	void Peek(T& value) const;
-	bool isEmpty() const;
-	int getCount() const;
+	virtual void Enqueue(T value) =0 ;
+	virtual  bool Dequeue(T& value) =0 ;
+	virtual bool Peek(T& value) const =0 ;
+	virtual bool isEmpty() const =0 ;
+	virtual int getCount() const =0 ;
 
 };
 
-#include "Queue.cpp"
 
 #endif

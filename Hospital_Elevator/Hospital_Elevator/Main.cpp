@@ -1,9 +1,9 @@
 #include<iostream>
 using namespace std;
-#include "Queue.h"
+#include "Queue.cpp"
 int main() {
 	// test queue
-	Queue<int> q; 
+	LinkedQueue<int> q;
 	cout << q.isEmpty() << endl; 
 	int z;
 	q.Peek(z);
@@ -16,6 +16,11 @@ int main() {
 	cout << z << endl; 
 	q.Dequeue(z); 
 	cout << z << endl; 
+	q.Peek(z);
+	cout << z << endl;
+	q.Dequeue(z);
+	cout << z << endl;	
+	cout << q.isEmpty() << endl; 
 	q.Peek(z);
 	cout << z << endl; 
 	return 0; 
