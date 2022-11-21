@@ -45,7 +45,7 @@ public:
 	{
 		if (isFull())
 			return false;
-		item[count++] = entry;
+		items[count++] = entry;
 		return true;
 	}
 
@@ -80,7 +80,6 @@ public:
 			items[i] = B.items[i];
 		count = B.count;
 	}
-
 	/*void clear()
 	{
 
