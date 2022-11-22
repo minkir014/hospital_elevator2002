@@ -18,8 +18,11 @@ public:
 	UI();
 	~UI();
 	// not done yet 
-	MODE GetMode() const;  
+	void SetAppMode();
+	MODE GetAppMode() const;  
 	string ReadFileName(); 
+	void PrintMsg(const string& msg) const;
+
 	
 
 };
