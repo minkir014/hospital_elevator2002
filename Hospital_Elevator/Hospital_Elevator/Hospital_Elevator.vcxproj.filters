@@ -57,6 +57,12 @@
     <ClInclude Include="LinkedQueue.h">
       <Filter>ADTs</Filter>
     </ClInclude>
+    <ClInclude Include="EventArrival.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LeaveEvent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Event.cpp">
@@ -87,6 +93,12 @@
       <Filter>ADTs Implementation</Filter>
     </ClCompile>
     <ClCompile Include="Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EventArrival.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LeaveEvent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
