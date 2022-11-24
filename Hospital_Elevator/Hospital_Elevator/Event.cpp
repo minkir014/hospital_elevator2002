@@ -3,11 +3,12 @@
 #include <string>
 using namespace std;
 
-Event::Event(int CEventTime, int CID,int CEventnumber=0)
+Event::Event(Events CEventType, int CEventTime, int CID,int CEventnumber=0)
 {
 	Eventnumber = CEventnumber;
 	ID = CID;
 	EventTime = CEventTime;
+	EventType = CEventType;
 }
 
 Event::~Event()

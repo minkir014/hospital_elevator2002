@@ -4,7 +4,7 @@ using namespace std;
 
 
 
-Pickable::Pickable(int CID, int CPriority, int CArrivaltime, string CType, int CSrcfloor, int CTrgfloor) //Constructor for all parameters
+Pickable::Pickable(int CID, int CPriority, int CArrivaltime, E_UserType CType, int CSrcfloor, int CTrgfloor) //Constructor for all parameters
 {
 	ID = CID;
 	Priority = CPriority;
@@ -18,7 +18,7 @@ Pickable::Pickable(int CID, int CArrivaltime, int CTrgfloor)//constructor for vi
 	ID = CID;
 	Priority = 0;
 	ArrivalTime = CArrivaltime;
-	Type = "Visitor";
+	Type = V;
 	Srcfloor = 0;
 	Trgfloor = CTrgfloor;
 }

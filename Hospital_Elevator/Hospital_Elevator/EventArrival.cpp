@@ -1,10 +1,10 @@
 #include "EventArrival.h"
+#include "Defs.h"
 
 
 
-EventArrival::EventArrival(int CID, int CPriority, int CArrivaltime, string CType, int CSrcfloor, int CTrgfloor,int CEventnumber=0):Event(CArrivaltime, CID, CEventnumber)
+EventArrival::EventArrival(Events CEventType, int CID, int CPriority, int CArrivaltime, E_UserType CType, int CSrcfloor, int CTrgfloor,int CEventnumber) : Event(CEventType, CArrivaltime, CID, CEventnumber)
 {
-	Event(CArrivaltime,CID, CEventnumber);
 	PickablePTR = new Pickable(CID, CPriority, CArrivaltime, CType, CSrcfloor, CTrgfloor);
 }
 EventArrival::~EventArrival()

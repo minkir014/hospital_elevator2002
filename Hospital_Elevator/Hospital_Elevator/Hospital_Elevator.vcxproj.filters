@@ -60,8 +60,14 @@
     <ClInclude Include="EventArrival.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="LeaveEvent.h">
+    <ClInclude Include="HeapNode.h">
+      <Filter>ADTs</Filter>
+    </ClInclude>
+    <ClInclude Include="Defs.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LinkedHeap.h">
+      <Filter>ADTs</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -86,7 +92,7 @@
     <ClCompile Include="ArrayBag.cpp">
       <Filter>ADTs Implementation</Filter>
     </ClCompile>
-    <ClCompile Include="Heap.cpp">
+    <ClCompile Include="LinkedHeap.cpp">
       <Filter>ADTs Implementation</Filter>
     </ClCompile>
     <ClCompile Include="LinkedQueue.cpp">
@@ -97,9 +103,6 @@
     </ClCompile>
     <ClCompile Include="EventArrival.cpp">
       <Filter>Resource Files</Filter>
-    </ClCompile>
-    <ClCompile Include="LeaveEvent.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -141,15 +141,17 @@
   <ItemGroup>
     <ClInclude Include="ArrayBag.h" />
     <ClInclude Include="Bag.h" />
+    <ClInclude Include="Defs.h" />
     <ClInclude Include="Elevator.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="Event.h" />
     <ClInclude Include="EventArrival.h" />
     <ClInclude Include="Floor.h" />
+    <ClInclude Include="LinkedHeap.h" />
     <ClInclude Include="Heap.h" />
+    <ClInclude Include="HeapNode.h" />
     <ClInclude Include="Hospital.h" />
-    <ClInclude Include="LeaveEvent.h" />
     <ClInclude Include="LinkedQueue.h" />
     <ClInclude Include="Pickable.h" />
     <ClInclude Include="QNode.h" />
@@ -171,13 +173,12 @@
     <ClCompile Include="Floor.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Heap.cpp">
+    <ClCompile Include="LinkedHeap.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Hospital.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="LeaveEvent.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Pickable.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
