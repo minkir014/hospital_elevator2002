@@ -154,6 +154,7 @@
     <ClInclude Include="Hospital.h" />
     <ClInclude Include="LinkedQueue.h" />
     <ClInclude Include="Pickable.h" />
+    <ClInclude Include="PickablePtr.h" />
     <ClInclude Include="QNode.h" />
     <ClInclude Include="Queue.h" />
     <ClInclude Include="UI.h" />
@@ -180,6 +181,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Test.cpp" />
     <ClCompile Include="Pickable.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
@@ -187,6 +189,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="PickablePtr.cpp" />
     <ClCompile Include="UI.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>

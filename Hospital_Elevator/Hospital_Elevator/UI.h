@@ -21,11 +21,14 @@ public:
 	void SetAppMode(); // get the mode from the user ; 
 	void SetIOfileName(); 
 	MODE GetAppMode() const;  
-	void ReadIOFileName(); // read input and output file names  
+	void ReadIOFileName(); // read input and output file names 
+
+	string getInputFileName() const;
+	string getOutputFileName() const;
 
 	void PrintMsg(const string& msg) const;
 	
-	void PrintTimetamp(int& Time) const;   // current timestamp : 78 ; 
+	void PrintTimetamp(const int& Time) const;   // current timestamp : 78 ; 
 	
 	void PressEnterToContinue() const; // after each timestamp  
 	

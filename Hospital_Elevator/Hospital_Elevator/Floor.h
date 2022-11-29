@@ -1,12 +1,19 @@
 #pragma once
-using namespace std;
-template <typename T>
+#include "LinkedHeap.h"
+#include "PickablePtr.h"
+
 
 class Floor {
 private:
 	int numflo;
-	Heap Up;
-	Heap Down;
+	LinkedHeap<PickablePtr> Up;
+	LinkedHeap<PickablePtr> Down;
+
+	//PickablePtr // To be asked about
+	// Traverse in Heap
+	// Divide into 2 lists
+	// Have next property
+
 
 public:
 

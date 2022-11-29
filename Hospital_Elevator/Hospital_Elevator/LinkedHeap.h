@@ -24,6 +24,8 @@ public:
 
 	bool Delete();
 
+	T peekTop() const;
+
 	bool IsEmpty() const;
 
 	int getCount() const;

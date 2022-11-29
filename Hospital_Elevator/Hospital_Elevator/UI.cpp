@@ -60,3 +60,13 @@ void UI::ReadIOFileName() {
     this->OutputFileName = "Outputs/" + Output;
 
 }
+
+string UI::getInputFileName() const {
+    return InputFileName;
+}
+
+string UI::getOutputFileName() const {
+    return OutputFileName;
+}
+
+UI::~UI() {}

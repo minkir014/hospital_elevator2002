@@ -4,9 +4,9 @@
 #include <string>
 using namespace std;
 
-Elevator::Elevator(int CCurrentFloor, int CSpeed, int CCapacity):Elevatorhead(CCapacity)
+Elevator::Elevator(int CSpeed, int CCapacity):Elevatorhead(CCapacity)
 {
-	CurrentFloor = CCurrentFloor;
+	CurrentFloor = 0;
 	Speed = CSpeed;
 	Capacity = CCapacity;
 }

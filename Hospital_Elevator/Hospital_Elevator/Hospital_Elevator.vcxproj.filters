@@ -69,6 +69,9 @@
     <ClInclude Include="LinkedHeap.h">
       <Filter>ADTs</Filter>
     </ClInclude>
+    <ClInclude Include="PickablePtr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Event.cpp">
@@ -98,11 +101,17 @@
     <ClCompile Include="LinkedQueue.cpp">
       <Filter>ADTs Implementation</Filter>
     </ClCompile>
-    <ClCompile Include="Main.cpp">
+    <ClCompile Include="Test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="EventArrival.cpp">
       <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PickablePtr.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

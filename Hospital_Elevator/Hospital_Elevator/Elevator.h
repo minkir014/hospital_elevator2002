@@ -13,7 +13,7 @@ private:
 	ArrayBag<Pickable*> Elevatorhead;	//bag containig People in the elevator
 	
 public:
-	Elevator(int CCurrentFloor,int CSpeed, int CCapacity);
+	Elevator(int CSpeed, int CCapacity);
 	~Elevator();
 
 };
