@@ -6,6 +6,7 @@ using namespace std;
 
 UI::UI() {
     cout << "---------------Hospital Queuing System Starts-------" << endl;
+    this->ReadIOFileName();
     this->SetAppMode(); 
 }
 
@@ -39,7 +40,7 @@ void UI::ReadIOFileName() {
     cout << "ENTER THE INPUT AND OUTPUT FILES NAMES:" << endl;
     cout << "--------------------------------------" << endl;
     cout << "Notes:" << endl;
-    cout << "[!]: The Input File Should Be Inside The [Loads] Directory" << endl; // to be added later 
+    cout << "[!]: The Input File Should Be Inside The [Inputs] Directory" << endl; // to be added later 
     cout << "[!]: The Output File Should Be Inside The [Outputs] Directory" << endl; // to be added later 
 
  /* how to check if the input string is in the loads director   as well as ouput string is in output  dir */
@@ -55,7 +56,7 @@ void UI::ReadIOFileName() {
         Output += ".txt";
         
         
-    this->InputFileName = "Loads/" + Input;
+    this->InputFileName = "Inputs/" + Input;
     this->OutputFileName = "Outputs/" + Output;
 
 }
