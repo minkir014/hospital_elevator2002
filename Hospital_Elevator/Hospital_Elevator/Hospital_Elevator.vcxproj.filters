@@ -72,6 +72,12 @@
     <ClInclude Include="PickablePtr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="LinkedBag.h">
+      <Filter>ADTs</Filter>
+    </ClInclude>
+    <ClInclude Include="LinkedNode.h">
+      <Filter>ADTs</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Event.cpp">
@@ -106,6 +112,9 @@
     </ClCompile>
     <ClCompile Include="EventArrival.cpp">
       <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LinkedBag.cpp">
+      <Filter>ADTs Implementation</Filter>
     </ClCompile>
     <ClCompile Include="PickablePtr.cpp">
       <Filter>Resource Files</Filter>

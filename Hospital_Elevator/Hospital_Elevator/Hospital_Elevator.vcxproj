@@ -148,10 +148,12 @@
     <ClInclude Include="Event.h" />
     <ClInclude Include="EventArrival.h" />
     <ClInclude Include="Floor.h" />
+    <ClInclude Include="LinkedBag.h" />
     <ClInclude Include="LinkedHeap.h" />
     <ClInclude Include="Heap.h" />
     <ClInclude Include="HeapNode.h" />
     <ClInclude Include="Hospital.h" />
+    <ClInclude Include="LinkedNode.h" />
     <ClInclude Include="LinkedQueue.h" />
     <ClInclude Include="Pickable.h" />
     <ClInclude Include="PickablePtr.h" />
@@ -173,6 +175,9 @@
     <ClCompile Include="EventArrival.cpp" />
     <ClCompile Include="Floor.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="LinkedBag.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="LinkedHeap.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
