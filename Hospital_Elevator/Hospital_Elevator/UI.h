@@ -17,13 +17,35 @@ private:
 public:
 	UI();
 	~UI();
-	// not done yet 
-	void SetAppMode();
-	MODE GetAppMode() const;  
-	string ReadFileName(); 
-	void PrintMsg(const string& msg) const;
 
+	void SetAppMode(); // get the mode from the user ; 
+	void SetIOfileName(); 
+	MODE GetAppMode() const;  
+	void ReadIOFileName(); // read input and output file names  
+
+	void PrintMsg(const string& msg) const;
 	
+	void PrintTimetamp(int& Time) const;   // current timestamp : 78 ; 
+	
+	void PressEnterToContinue() const; // after each timestamp  
+	
+	void PrintUpsAndDowns(int& sizeUp, int* Up, int& sizeDown, int* Down) const; // up[1,2,3] down [4,5,6] - will be called in printing Patient ,visitor , cargos ; 
+	
+	void PrintWaitingPatients(int& sizeUp, int* Up, int& sizeDown, int* Down) const; // 5 wating Patients : up[] down[]'
+
+	void PrintWaitingCargos(int& sizeUp, int* Up, int& sizeDown, int* Down) const;
+	
+	void PrintWaitingVisitors(int& sizeUp, int* Up, int& sizeDown, int* Down) const;
+
+	void PrintElevator(string & direction, string & state , int & capacity  , int &CurrrentLoad, char & type) const; // type is elevetor type . type[].  will be called for all elevator on that floor ;
+
+	void PrintFloor(int& FloorNumber) const; // ----- floor 4 ------ / if floornum =0  ---- Ground ---- 
+
+	void PrintFinalStats(int & TotalWaiting , int & VisitorLeft , int & TotalInservice , int & VisitorOnStairs ,int &TotalCompleted ) const; 
+
+	void WaitOneSecond() const ; // will be used in step-By-step mode 
+
+	void PrintSilentModeTxt() const; /* silent mode , Simulation Starts ,Simulation ends , Output file created*/
 
 };
 #endif
