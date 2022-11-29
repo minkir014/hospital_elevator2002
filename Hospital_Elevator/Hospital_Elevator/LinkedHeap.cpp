@@ -4,6 +4,22 @@
 template <typename T>
 LinkedHeap<T>::LinkedHeap() : root(nullptr), count(0) { }
 
+template <typename T>
+LinkedHeap<T>::~LinkedHeap() {
+	DestroyHeap(root);
+	count = 0;
+}
+
+template <typename T>
+bool LinkedHeap<T>::DestroyHeap(HeapNode<T>* SubTreeRoot) {
+	if (SubTreeRoot == nullptr)
+		return false;
+
+	DestroyHeap(SubTreeRoot->getLeft());
+	DestroyHeap(SubTreeRoot->getRight());
+	delete SubTreeRoot;
+}
+
 
 template <typename T>
 HeapNode<T>* LinkedHeap<T>::reHeapUp(HeapNode<T>* Parent, HeapNode<T>* Child) {
