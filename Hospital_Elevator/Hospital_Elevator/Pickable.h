@@ -17,6 +17,12 @@ private:
 public:
 	Pickable(int CID, int CPriority, int CArrivaltime, E_UserType CType,int CSrcfloor,int CTrgfloor);
 	Pickable(int CID, int CArrivaltime, int CTrgfloor);
+	int getID();
+	int getPriority();
+	int getArrivalTime();
+	int getSrcfloor();
+	int getTrgfloor();
+	E_UserType getType();
 	~Pickable();
 
 };

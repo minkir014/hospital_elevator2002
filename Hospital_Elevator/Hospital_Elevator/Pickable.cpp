@@ -23,6 +23,13 @@ Pickable::Pickable(int CID, int CArrivaltime, int CTrgfloor)//constructor for vi
 	Trgfloor = CTrgfloor;
 }
 
+int Pickable::getID() { return ID; }
+int Pickable::getPriority() { return Priority; }
+int Pickable::getArrivalTime() { return ArrivalTime; }
+int Pickable::getSrcfloor() { return Srcfloor; }
+int Pickable::getTrgfloor() { return Trgfloor; }
+E_UserType Pickable::getType() { return Type; }
+
 Pickable::~Pickable()
 {
 }
