@@ -58,7 +58,7 @@ void Floor::TraversePickables(int* Vup, int* Vdown, int* Cup, int* Cdown, int* P
 			if (Type == V) {
 				Vdown[Vdownsize] = PickableInFrontPtr->getID();
 				Vdownsize++;
-			}
+			}	
 			else if (Type == C) {
 				Cdown[Cdownsize] = PickableInFrontPtr->getID();
 				Cdownsize++;
