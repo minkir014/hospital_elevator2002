@@ -13,7 +13,7 @@ public:
 
 	bool destroyPickable();
 
-	Pickable* getPickablePtr() const;
+	Pickable*getPickablePtr() const;
 	
 };
 

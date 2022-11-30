@@ -49,6 +49,5 @@ public:
 	void WaitOneSecond() const ; // will be used in step-By-step mode 
 
 	void PrintSilentModeTxt() const; /* silent mode , Simulation Starts ,Simulation ends , Output file created*/
-
 };
 #endif

@@ -32,8 +32,6 @@ public:
 
 
 	bool IsEmpty() const;
-
 	int getCount() const;
 };
-
 #include "LinkedHeap.cpp"
