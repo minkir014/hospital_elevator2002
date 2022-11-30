@@ -74,5 +74,5 @@ void Hospital::OutputToScreen() {
 
 
 
-}
+}	
 
