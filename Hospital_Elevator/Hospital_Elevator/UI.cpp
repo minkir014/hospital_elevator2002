@@ -69,4 +69,17 @@ string UI::getOutputFileName() const {
     return OutputFileName;
 }
 
+void UI::WaitOneSecond() const {
+
+
+}
+
+void UI::PrintFinalStats(int& TotalWaiting, int& VisitorLeft, int& TotalInservice, int& VisitorOnStairs, int& TotalCompleted) const
+{
+
+
+
+}
+
+
 UI::~UI() {}

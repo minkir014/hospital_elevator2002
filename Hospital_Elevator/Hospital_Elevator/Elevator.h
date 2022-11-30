@@ -11,7 +11,6 @@ private:
 	int Speed;				//Time steps needed to move up or down a Floor
 	int Capacity;			//max capicity of the elevator 
 	ArrayBag<Pickable*> Elevatorhead;	//bag containig People in the elevator
-	
 public:
 	Elevator(int CSpeed, int CCapacity);
 	~Elevator();
