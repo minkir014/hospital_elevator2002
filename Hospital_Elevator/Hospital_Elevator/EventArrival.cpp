@@ -5,10 +5,11 @@
 
 EventArrival::EventArrival(EventTypes CEventType, int CID, int CPriority, int CArrivaltime, E_UserType CType, int CSrcfloor, int CTrgfloor) : Event(CEventType, CArrivaltime, CID)
 {
-	Pickable* Pickableptr = new Pickable(CID, CPriority, CArrivaltime, CType, CSrcfloor, CTrgfloor);
-	PickablePTR.setPickablePtr(Pickableptr);
+	Priority = CPriority;
+	Type = CType;
+	Srcfloor = CSrcfloor;
+	Trgfloor = CTrgfloor;
+
 }
 EventArrival::~EventArrival()
 {}
-
-PickablePtr EventArrival::getPickablePtr() const { return PickablePTR; }
