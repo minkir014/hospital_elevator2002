@@ -14,7 +14,7 @@ enum E_UserType { //  elevator user type
 	P , // patient 
 	C // cargo 
 };
-enum Events { // 
+enum EventTypes { // 
 	Arrival,
 	leave,
 	Stair,

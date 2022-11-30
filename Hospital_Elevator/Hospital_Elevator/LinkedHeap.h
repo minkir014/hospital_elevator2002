@@ -26,6 +26,11 @@ public:
 
 	T peekTop() const;
 
+	const LinkedHeap<T> getRightSubTree() const;
+
+	const LinkedHeap<T> getLeftSubTree() const;
+
+
 	bool IsEmpty() const;
 
 	int getCount() const;

@@ -11,6 +11,8 @@ public:
 
 	void setPickablePtr(Pickable* ptr);
 
+	bool destroyPickable();
+
 	Pickable* getPickablePtr() const;
 	
 };

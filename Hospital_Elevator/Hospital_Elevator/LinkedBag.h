@@ -19,7 +19,7 @@ public:
 	LinkedBag(const LinkedBag<T>& B); //Copy constructor
 	~LinkedBag();
 
-	int GetCount() const;
+	int GetSize() const;
 
 	bool isEmpty() const;
 

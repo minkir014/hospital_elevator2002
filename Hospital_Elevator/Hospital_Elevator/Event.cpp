@@ -4,9 +4,8 @@
 using namespace std;
 
 
-Event::Event(Events CEventType, int CEventTime, int CID,int CEventnumber=0)
+Event::Event(EventTypes CEventType, int CEventTime, int CID)
 {
-	Eventnumber = CEventnumber;
 	ID = CID;
 	EventTime = CEventTime;
 	EventType = CEventType;

@@ -4,6 +4,7 @@
 #include "Event.h"
 #include "PickablePtr.h"
 #include "ArrayBag.h"
+#include "LinkedBag.h"
 #include "LinkedQueue.h"
 #include "UI.h"
 #include "EventArrival.h"
@@ -21,11 +22,11 @@ private:
 
 	ArrayBag<Floor>* Floors;
 	LinkedQueue<Event*> Events;
-
-	ArrayBag<PickablePtr>* Stairs; // To be changed to LL Bag
+	
+	LinkedBag<PickablePtr> Stairs;
 	LinkedQueue<PickablePtr> Finished;
 
-
+	
 	int TimeStep;
 	int S;
 	int AutoS;

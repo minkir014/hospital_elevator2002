@@ -38,7 +38,7 @@ bool LinkedBag<T>::isEmpty() const
 }
 
 template <typename T>
-int LinkedBag<T>::GetCount() const
+int LinkedBag<T>::GetSize() const
 {
 	return count;
 }

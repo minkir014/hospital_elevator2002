@@ -32,12 +32,30 @@ void Hospital::InitializeLists() {
 	InputFile >> noOfFloors;
 
 	char EventType, PickableType; int timestep, id, srcFloor, targetFloor, emergency;
+	Event* ev = nullptr;
 
 	while (InputFile >> EventType) {
+		InputFile >> PickableType >> timestep >> id >> srcFloor >> targetFloor;
+
 		if (EventType == 'A') {
-			InputFile >> PickableType >> timestep >> id >> srcFloor >> targetFloor;
-			//Event* arr = new EventArrival()
+			if (PickableType == 'P') {
+				InputFile >> emergency;
+				ev = new EventArrival(Arrival, id, emergency, timestep, P, srcFloor, targetFloor);
+			}
+			else if (PickableType == 'V')
+				ev = new EventArrival(Arrival, id, 0, timestep, V, srcFloor, targetFloor);
+			else
+				ev = new EventArrival(Arrival, id, -1, timestep, C, srcFloor, targetFloor);
+
 		}
+		else if (EventType == 'L') {
+			ev = new Event(leave, timestep, id);
+		}
+		else {
+			ev = new Event(Stair, timestep, id);
+		}
+
+		Events.Enqueue(ev);
 	}
 
 }

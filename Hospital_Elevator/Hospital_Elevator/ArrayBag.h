@@ -10,16 +10,16 @@ private:
 	int count;
 	T* items;
 
+	int GetCapacity() const;
+	bool isFull() const;
 public:
 	ArrayBag(int cap);
 	ArrayBag(const ArrayBag<T>& B); //Copy constructor
 	~ArrayBag();
 
 	int GetSize() const;
-	int GetCapacity() const;
 
 	bool isEmpty() const;
-	bool isFull() const;
 
 	bool add(const T& entry);
 	bool remove(T& entry);

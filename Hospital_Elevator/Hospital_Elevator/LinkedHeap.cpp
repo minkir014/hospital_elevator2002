@@ -190,3 +190,18 @@ bool LinkedHeap<T>::IsEmpty() const { return !count; }
 template <typename T>
 int LinkedHeap<T>::getCount() const { return count; }
 
+template <typename T>
+const LinkedHeap<T> LinkedHeap<T>::getRightSubTree() const {
+	LinkedHeap<T> LH;
+	LH.root = root->getRight();
+
+	return LH;
+}
+
+template <typename T>
+const LinkedHeap<T> LinkedHeap<T>::getLeftSubTree() const {
+	LinkedHeap<T> LH;
+	LH.root = root->getLeft();
+
+	return LH;
+}
