@@ -17,7 +17,7 @@ void Hospital::InitializeLists() {
 	InputFile.open(InterfaceController.getInputFileName(), ios::in);
 	int noOfFloors;
 	InputFile >> noOfFloors;
-	//Floors = new LinkedBag<Floor>();
+	Floors = new ArrayBag<Floor*>(noOfFloors);
 
 	int V_Speed, C_Speed, P_Speed;
 	InputFile >> V_Speed >> C_Speed >> P_Speed;
@@ -62,7 +62,7 @@ void Hospital::InitializeLists() {
 	}
 
 }
-void Hospital::OutputToScreen() {
+/*void Hospital::OutputToScreen() {
 	cout << "Current Timestep :" << TimeStep << endl; 
 	int loop = 
 
@@ -76,3 +76,4 @@ void Hospital::OutputToScreen() {
 
 }
 
+*/

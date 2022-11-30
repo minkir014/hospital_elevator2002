@@ -199,6 +199,11 @@ const LinkedHeap<T> LinkedHeap<T>::getRightSubTree() const {
 }
 
 template <typename T>
+T LinkedHeap<T>::Search(T key) const {
+	
+}
+
+template <typename T>
 const LinkedHeap<T> LinkedHeap<T>::getLeftSubTree() const {
 	LinkedHeap<T> LH;
 	LH.root = root->getLeft();

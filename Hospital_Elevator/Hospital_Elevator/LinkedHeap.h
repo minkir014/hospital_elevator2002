@@ -30,6 +30,7 @@ public:
 
 	const LinkedHeap<T> getLeftSubTree() const;
 
+	T Search(T key) const;
 
 	bool IsEmpty() const;
 
