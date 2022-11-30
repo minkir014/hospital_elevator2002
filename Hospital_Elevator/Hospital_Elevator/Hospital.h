@@ -10,6 +10,7 @@
 #include "EventArrival.h"
 #include "Defs.h"
 #include <fstream>
+#include"LinkedBag.h"
 
 
 class Hospital {
@@ -26,7 +27,6 @@ private:
 	LinkedBag<PickablePtr> Stairs;
 	LinkedQueue<PickablePtr> Finished;
 
-	
 	int TimeStep;
 	int S;
 	int AutoS;
@@ -34,11 +34,9 @@ private:
 	fstream InputFile;
 	fstream OutputFile;
 
-	
 	void IncrementTimeStep();
 	void ExecuteEvent();
 	void OutputToScreen();
-
 public:
 	Hospital();
 	~Hospital();

@@ -14,7 +14,7 @@ private:
 	// Divide into 2 lists
 	// Have next property
 
-
 public:
-
+	Floor(int numfloor); 
+		
 };
