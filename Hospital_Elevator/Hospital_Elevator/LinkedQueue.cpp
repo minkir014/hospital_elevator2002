@@ -25,7 +25,7 @@ template <typename T>
 int LinkedQueue<T>::getCount() const { return count; }
 
 template <typename T>
-void LinkedQueue<T>::Enqueue(T value) {
+void LinkedQueue<T>::Enqueue(T & value) {
 	count++;
 	QNode<T>* newNodePtr = new QNode<T>(value);
 	if (Front == nullptr && Rear == nullptr) {

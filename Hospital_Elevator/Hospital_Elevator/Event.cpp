@@ -4,7 +4,6 @@
 #include <string>
 using namespace std;
 
-
 Event::Event(EventTypes CEventType, int CEventTime, int CID)
 {
 	ID = CID;

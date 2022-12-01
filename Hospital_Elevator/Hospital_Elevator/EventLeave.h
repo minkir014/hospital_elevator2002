@@ -3,7 +3,9 @@
 #include "Defs.h"
 #include "PickablePtr.h"
 
-class EventLeave : Event {
+class EventLeave : public Event {
 public:
+	EventLeave(EventTypes CEventType, int CEventTime, int CID);
 	bool execute(Hospital* hos);
+	~EventLeave();
 };

@@ -65,19 +65,57 @@ string UI::getInputFileName() const {
     return InputFileName;
 }
 
+void UI::PrintUpsAndDowns(int& sizeUp, int* Up, int& sizeDown, int* Down) const {
+    cout << "UP[ "; 
+    for (int i = 0; i < sizeUp; i++)
+    {
+        cout << Up[i]; 
+        if (i != sizeUp - 1) {
+            cout << " ,"; 
+
+        }
+    }
+    cout << " ]";
+    cout << " DOWN[ ";
+    for (int i = 0; i < sizeDown; i++)
+    {
+        cout << Down[i];
+        if (i != sizeDown - 1) {
+            cout << " ,";
+
+        }
+    }
+    cout << " ]" << endl;
+}
+
+void UI::PrintWaitingPatients(int& sizeUp, int* Up, int& sizeDown, int* Down) const {
+    cout << sizeUp + sizeDown << " " << "Waiting Patients: "; 
+    this->PrintUpsAndDowns(sizeUp, Up, sizeDown, Down);
+}
+
+void UI::PrintWaitingCargos(int& sizeUp, int* Up, int& sizeDown, int* Down)const  {
+    cout << sizeUp + sizeDown << " " << "Wating Cargos: ";
+    this->PrintUpsAndDowns(sizeUp, Up, sizeDown, Down);
+}
+
+void UI::PrintWaitingVisitors(int& sizeUp, int* Up, int& sizeDown, int* Down) const {
+    cout << sizeUp + sizeDown << " " << "Waiting visitors: ";
+    this->PrintUpsAndDowns(sizeUp, Up, sizeDown, Down);
+}
+void UI::PrintFloor(int& FloorNumber) const {
+    if (FloorNumber == 1)  cout << "------------------------ GROUND -------------------" << endl;
+    else cout << "------------------------ Floor " << FloorNumber << "-------------------"; 
+}
+
 string UI::getOutputFileName() const {
     return OutputFileName;
 }
 
 void UI::WaitOneSecond() const {
-
-
 }
 
 void UI::PrintFinalStats(int& TotalWaiting, int& VisitorLeft, int& TotalInservice, int& VisitorOnStairs, int& TotalCompleted) const
 {
-
-
 
 }
 

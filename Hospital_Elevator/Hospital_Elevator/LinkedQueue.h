@@ -16,7 +16,7 @@ public:
 	bool isEmpty() const;
 	int getCount() const;
 
-	void Enqueue(T value);
+	void Enqueue(T &value);
 	bool Dequeue(T& value);
 	bool Peek(T& value) const;
 
