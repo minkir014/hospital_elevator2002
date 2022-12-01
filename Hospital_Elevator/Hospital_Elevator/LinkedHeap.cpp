@@ -182,7 +182,7 @@ bool LinkedHeap<T>::ReBuild() {
 }
 
 template <typename T>
-T LinkedHeap<T>::peekTop() const {	if (root != nullptr) return root->getData(); }
+T LinkedHeap<T>::peekTop() const { if (root != nullptr)  return root->getData(); else return 0;  }
 
 template <typename T>
 bool LinkedHeap<T>::IsEmpty() const { return !count; }

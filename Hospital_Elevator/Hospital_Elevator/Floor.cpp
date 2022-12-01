@@ -18,6 +18,7 @@ void Floor::TraversePickables(int* Vup, int* Vdown, int* Cup, int* Cdown, int* P
 			LinkedHeap<PickablePtr> Front;
 			BreadthQueue.Dequeue(Front);
 			PickablePtr PickableInFront = Front.peekTop();
+			if (PickableInFront == 0)  continue; 
 			Pickable* PickableInFrontPtr = PickableInFront.getPickablePtr();
 			E_UserType  Type = PickableInFrontPtr->getType(); 
 			if (Type == V) {
@@ -32,10 +33,12 @@ void Floor::TraversePickables(int* Vup, int* Vdown, int* Cup, int* Cdown, int* P
 				Pupsize++;
 			}
 			if (Front.getLeftSubTree().getCount() != 0) {
-				BreadthQueue.Enqueue(Front.getLeftSubTree());
+				LinkedHeap<PickablePtr> heaps = Front.getLeftSubTree(); 
+				BreadthQueue.Enqueue(heaps);
 			}
 			if (Front.getLeftSubTree().getCount() != 0) {
-				BreadthQueue.Enqueue(Front.getRightSubTree());
+				LinkedHeap<PickablePtr> heaps = Front.getLeftSubTree();
+				BreadthQueue.Enqueue(heaps);
 			}
 			
 		}
@@ -45,6 +48,7 @@ void Floor::TraversePickables(int* Vup, int* Vdown, int* Cup, int* Cdown, int* P
 			LinkedHeap<PickablePtr> Front;
 			BreadthQueue.Dequeue(Front);
 			PickablePtr PickableInFront = Front.peekTop();
+			if (PickableInFront == 0)  continue;
 			Pickable* PickableInFrontPtr = PickableInFront.getPickablePtr();
 			E_UserType  Type = PickableInFrontPtr->getType();
 			if (Type == V) {
@@ -60,10 +64,12 @@ void Floor::TraversePickables(int* Vup, int* Vdown, int* Cup, int* Cdown, int* P
 				Pdownsize++;
 			}
 			if (Front.getLeftSubTree().getCount() != 0) {
-				BreadthQueue.Enqueue(Front.getLeftSubTree());
+				LinkedHeap<PickablePtr> heaps = Front.getLeftSubTree();
+				BreadthQueue.Enqueue(heaps);
 			}
 			if (Front.getLeftSubTree().getCount() != 0) {
-				BreadthQueue.Enqueue(Front.getRightSubTree());
+				LinkedHeap<PickablePtr> heaps = Front.getLeftSubTree();
+				BreadthQueue.Enqueue(heaps);
 			}
 
 		}
@@ -73,10 +79,11 @@ int Floor::GetUpHeapSize() const {return Up.getCount();}
 int Floor::GetdownHeapSize() const{ return Down.getCount();}
 
 bool Floor::EnqueueUp(PickablePtr ptr) {
-	Up.Insert(ptr);
+	return Up.Insert(ptr);
 }
 bool Floor::EnqueuDown(PickablePtr ptr) {
-	Down.Insert(ptr);
+	return Down.Insert(ptr);
+	
 }
 
 PickablePtr Floor::getPickable(PickablePtr key) const {

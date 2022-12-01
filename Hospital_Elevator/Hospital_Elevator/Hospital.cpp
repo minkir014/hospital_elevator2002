@@ -1,7 +1,7 @@
 #include "Hospital.h"
 #include <string>
 #include "UI.h"
-
+#include "EventLeave.h"
 Hospital::Hospital() : TimeStep(0) {}
 
 Hospital::~Hospital() {}
@@ -88,11 +88,11 @@ void Hospital::InitializeLists() {
 		}
 		else if (EventType == 'L') {
 			InputFile >> timestep >> id;
-			ev = new Event(leave, timestep, id);
+			ev = new EventLeave(leave, timestep, id);
 		}
 		else {
 			InputFile >> timestep >> id;
-			ev = new Event(Stair, timestep, id);
+			ev = new EventLeave(Stair, timestep, id);
 		}
 
 		Events.Enqueue(ev);
