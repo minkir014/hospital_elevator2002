@@ -2,16 +2,15 @@
 #include <string>
 #include "UI.h"
 
-Hospital::Hospital() : TimeStep(0) {
-	
-
-}
+Hospital::Hospital() : TimeStep(0) {}
 
 Hospital::~Hospital() {}
 
 void Hospital::IncrementTimeStep() {
 	TimeStep++;
 }
+
+int Hospital::getTimeStep() const {	return TimeStep; }
 
 void Hospital::InitializeLists() {
 	InputFile.open(InterfaceController.getInputFileName(), ios::in);

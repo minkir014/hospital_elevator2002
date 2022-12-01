@@ -46,5 +46,7 @@ public:
 
 	void ExecuteEvents();
 
+	int getTimeStep() const;
+
 
 };

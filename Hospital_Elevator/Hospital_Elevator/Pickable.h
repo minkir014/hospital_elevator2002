@@ -19,6 +19,7 @@ public:
 	Pickable(int CID, int CArrivaltime, int CTrgfloor);
 	int getID();
 	int getPriority();
+	void resetPriority(int timestep);
 	int getArrivalTime();
 	int getSrcfloor();
 	int getTrgfloor();

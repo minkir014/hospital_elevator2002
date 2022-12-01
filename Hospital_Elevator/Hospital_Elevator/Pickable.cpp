@@ -26,6 +26,7 @@ Pickable::Pickable(int CID, int CArrivaltime, int CTrgfloor)//constructor for vi
 
 int Pickable::getID() { return ID; }
 int Pickable::getPriority() { return Priority; }
+void Pickable::resetPriority(int timestep) { Priority = Priority; }
 int Pickable::getArrivalTime() { return ArrivalTime; }
 int Pickable::getSrcfloor() { return Srcfloor; }
 int Pickable::getTrgfloor() { return Trgfloor; }
