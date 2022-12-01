@@ -7,6 +7,8 @@ class LinkedHeap : Heap<T> {
 private:
 	HeapNode<T>* root;
 	int count;
+
+	bool temp;
 	
 	HeapNode<T>* reHeapUp(HeapNode<T>* parent, HeapNode<T>* child);
 	HeapNode<T>* reHeapDown(HeapNode<T>* parent);
@@ -17,7 +19,8 @@ private:
 
 	T search(T obj, HeapNode<T>* subTreeRoot) const;
 public:
-	LinkedHeap();
+	LinkedHeap(bool temp = false);
+	LinkedHeap(const LinkedHeap<T>& lH, bool temp);
 	~LinkedHeap();
 
 	bool Insert(const T& Value);

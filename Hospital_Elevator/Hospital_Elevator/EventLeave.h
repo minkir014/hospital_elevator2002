@@ -4,6 +4,8 @@
 #include "PickablePtr.h"
 
 class EventLeave : public Event {
+private:
+	int h;
 public:
 	EventLeave(EventTypes CEventType, int CEventTime, int CID);
 	bool execute(Hospital* hos);

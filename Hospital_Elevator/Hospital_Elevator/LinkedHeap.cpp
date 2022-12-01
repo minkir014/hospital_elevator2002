@@ -2,11 +2,20 @@
 #include <cmath>
 
 template <typename T>
-LinkedHeap<T>::LinkedHeap() : root(nullptr), count(0) { }
+LinkedHeap<T>::LinkedHeap(bool temp) : root(nullptr), count(0) { this->temp = temp; }
+
+template <typename T>
+LinkedHeap<T>::LinkedHeap(const LinkedHeap<T>& LH, bool temp) {
+	root = LH.root;
+	count = LH.count;
+	this->temp = temp;
+}
 
 template <typename T>
 LinkedHeap<T>::~LinkedHeap() {
-	DestroyHeap(root);
+	if (!temp) {
+		DestroyHeap(root);
+	}
 	count = 0;
 }
 

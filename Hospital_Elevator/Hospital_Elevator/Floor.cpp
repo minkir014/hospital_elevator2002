@@ -13,7 +13,8 @@ void Floor::TraversePickables(int* Vup, int* Vdown, int* Cup, int* Cdown, int* P
 	
 	// Traverse Up
 		LinkedQueue<LinkedHeap<PickablePtr>> BreadthQueue;
-		BreadthQueue.Enqueue(Up);
+		LinkedHeap<PickablePtr> LH(Up, true);
+		BreadthQueue.Enqueue(LH);
 		while (!BreadthQueue.isEmpty()) {
 			LinkedHeap<PickablePtr> Front;
 			BreadthQueue.Dequeue(Front);
@@ -33,17 +34,17 @@ void Floor::TraversePickables(int* Vup, int* Vdown, int* Cup, int* Cdown, int* P
 				Pupsize++;
 			}
 			if (Front.getLeftSubTree().getCount() != 0) {
-				LinkedHeap<PickablePtr> heaps = Front.getLeftSubTree(); 
+				LinkedHeap<PickablePtr> heaps(Front.getLeftSubTree(), true);
 				BreadthQueue.Enqueue(heaps);
 			}
-			if (Front.getLeftSubTree().getCount() != 0) {
-				LinkedHeap<PickablePtr> heaps = Front.getLeftSubTree();
+			if (Front.getRightSubTree().getCount() != 0) {
+				LinkedHeap<PickablePtr> heaps(Front.getRightSubTree(), true);
 				BreadthQueue.Enqueue(heaps);
 			}
 			
 		}
 	//Traverse Down
-		BreadthQueue.Enqueue(Down);
+		LinkedHeap<PickablePtr> LH1(Down, true);
 		while (!BreadthQueue.isEmpty()) {
 			LinkedHeap<PickablePtr> Front;
 			BreadthQueue.Dequeue(Front);
@@ -64,11 +65,11 @@ void Floor::TraversePickables(int* Vup, int* Vdown, int* Cup, int* Cdown, int* P
 				Pdownsize++;
 			}
 			if (Front.getLeftSubTree().getCount() != 0) {
-				LinkedHeap<PickablePtr> heaps = Front.getLeftSubTree();
+				LinkedHeap<PickablePtr> heaps(Front.getLeftSubTree(), true);
 				BreadthQueue.Enqueue(heaps);
 			}
-			if (Front.getLeftSubTree().getCount() != 0) {
-				LinkedHeap<PickablePtr> heaps = Front.getLeftSubTree();
+			if (Front.getRightSubTree().getCount() != 0) {
+				LinkedHeap<PickablePtr> heaps(Front.getRightSubTree(), true);
 				BreadthQueue.Enqueue(heaps);
 			}
 
