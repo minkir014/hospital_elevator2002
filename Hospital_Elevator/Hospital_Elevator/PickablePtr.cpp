@@ -5,7 +5,9 @@ PickablePtr::PickablePtr(Pickable* ptr, const Hospital* hos) { this->ptr = ptr; 
 
 PickablePtr::PickablePtr(int tempID) { ptr = new Pickable(tempID, 0, 0); temp = true; }
 
-PickablePtr::~PickablePtr() { if (temp) destroyPickable(); }
+PickablePtr::~PickablePtr() { 
+	if (temp) destroyPickable();
+}
 
 void PickablePtr::setPickablePtr(Pickable* ptr) { this->ptr = ptr; }
 
