@@ -45,7 +45,7 @@ public:
 	void PrintFloor(int& FloorNumber) const; // ----- floor 4 ------ / if floornum =0  ---- Ground ---- 
 
 	void PrintFinalStats(int & TotalWaiting , int & VisitorLeft , int & TotalInservice , int & VisitorOnStairs ,int &TotalCompleted ) const; 
-
+	
 	void WaitOneSecond() const ; // will be used in step-By-step mode 
 
 	void PrintSilentModeTxt() const; /* silent mode , Simulation Starts ,Simulation ends , Output file created*/
