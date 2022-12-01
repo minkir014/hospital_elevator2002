@@ -25,6 +25,7 @@ public:
 	bool ReBuild();
 
 	bool Delete();
+	bool removeObj(const T& value);
 
 	T peekTop() const;
 

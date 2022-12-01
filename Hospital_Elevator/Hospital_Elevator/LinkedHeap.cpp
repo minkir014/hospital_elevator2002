@@ -153,6 +153,11 @@ bool LinkedHeap<T>::Delete() {
 }
 
 template <typename T>
+bool LinkedHeap<T>::removeObj(const T& value) {
+
+}
+
+template <typename T>
 bool LinkedHeap<T>::Rebuild(HeapNode<T>* SubTreeRoot) {
 	if (SubTreeRoot == nullptr)
 		return false;
@@ -182,7 +187,7 @@ bool LinkedHeap<T>::ReBuild() {
 }
 
 template <typename T>
-T LinkedHeap<T>::peekTop() const {	if (root != nullptr) return root->getData(); }
+T LinkedHeap<T>::peekTop() const { if (root != nullptr) return root->getData(); else return 0; }
 
 template <typename T>
 bool LinkedHeap<T>::IsEmpty() const { return !count; }
