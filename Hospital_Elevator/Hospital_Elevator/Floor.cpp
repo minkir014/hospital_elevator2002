@@ -11,14 +11,6 @@ Floor::Floor(int Cfloor) :CurrentFloor(Cfloor) {}
 void Floor::TraversePickables(int* Vup, int* Vdown, int* Cup, int* Cdown, int* Pup, int* Pdown, int& Vupsize, int& Vdownsize, int& Cupsize, int& Cdownsize, int& Pupsize, int& Pdownsize) {
 	//  sizes should be passed [Zero]; 
 	
-	const int UpCount = GetUpHeapSize();
-	const int DownCount = GetdownHeapSize();
-	Vup = new int[UpCount];
-	Pup = new int[UpCount];
-	Cup = new int[UpCount];
-	Vdown = new int[DownCount];
-	Pdown = new int[DownCount];
-	Cdown = new int[DownCount];
 	// Traverse Up
 		LinkedQueue<LinkedHeap<PickablePtr>> BreadthQueue;
 		BreadthQueue.Enqueue(Up);

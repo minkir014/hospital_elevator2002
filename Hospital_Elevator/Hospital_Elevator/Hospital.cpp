@@ -95,17 +95,35 @@ void Hospital::InitializeLists() {
 }
 void Hospital::OutputToScreen() {
 	cout << "Current Timestep :" << TimeStep << endl;
-	int* Vup, Vdown, Cup, Cdown, Pup, Pdown;
-	int Vupsize = 0;
-	int Vdownsize = 0;
-	int Cupsize = 0;
-	int Cdownsize = 0;
-	int Pupsize = 0;
-	int Pdownsize = 0;
 	// PrintWaiting Patients/Cargos/Visitor;
 	// LFloors.
+	for (int i = 0; i < numOfFloors; i++)
+	{
+		Floor* CurrentFloor = Floors[i]; 
+		const int UpCount = CurrentFloor->GetUpHeapSize();
+		const int DownCount = CurrentFloor->GetdownHeapSize();
+		int * Vup = new int[UpCount];
+		int * Pup = new int[UpCount];
+		int * Cup = new int[UpCount];
+		int * Vdown = new int[DownCount];
+		int * Pdown = new int[DownCount];
+		int * Cdown = new int[DownCount];
+		int Vupsize = 0;
+		int Vdownsize = 0;
+		int Cupsize = 0;
+		int Cdownsize = 0;
+		int Pupsize = 0;
+		int Pdownsize = 0;
+		CurrentFloor->TraversePickables(Vup, Vdown, Cup, Cdown, Pup, Pdown, Vupsize, Vdownsize, Cupsize, Cdownsize, Pupsize, Pdownsize); 
+		InterfaceController.PrintWaitingPatients(Pupsize, Pup, Pdownsize, Pdown);
+		InterfaceController.PrintWaitingCargos(Cupsize, Cup, Cdownsize, Cdown);
+		InterfaceController.PrintWaitingVisitors(Vupsize, Vup, Vdownsize, Vdown);
+		//InterfaceController.PrintElevator()
+		int s = i + 1; 
+		InterfaceController.PrintFloor(s);
 
-
+	}
+	
 
 
 

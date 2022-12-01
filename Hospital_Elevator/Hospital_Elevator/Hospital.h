@@ -21,7 +21,7 @@ private:
 	Elevator* VisitorElevator;
 	Elevator* CargoElevator;
 
-	Floor** Floors;
+	Floor** Floors ;
 	int numOfFloors;
 	LinkedQueue<Event*> Events;
 	
