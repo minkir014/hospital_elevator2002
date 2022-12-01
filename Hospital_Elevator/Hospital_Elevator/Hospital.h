@@ -21,8 +21,7 @@ private:
 	Elevator* VisitorElevator;
 	Elevator* CargoElevator;
 
-	ArrayBag<Floor>* Floors;
-// 	LinkedBag<Floor*> LFloors; 
+	ArrayBag<Floor*>* Floors;
 	LinkedQueue<Event*> Events;
 	
 	LinkedBag<PickablePtr> Stairs;
@@ -46,6 +45,8 @@ public:
 	void InitializeLists();
 
 	void ExecuteEvents();
+
+	int getTimeStep() const;
 
 
 };

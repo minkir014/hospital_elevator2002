@@ -14,6 +14,8 @@ private:
 	HeapNode<T>* insert(HeapNode<T>* parent, HeapNode<T>* newNode, int determiner);
 
 	bool DestroyHeap(HeapNode<T>* SubTreeRoot);
+
+	T search(T obj, HeapNode<T>* subTreeRoot) const;
 public:
 	LinkedHeap();
 	~LinkedHeap();
@@ -30,6 +32,7 @@ public:
 
 	const LinkedHeap<T> getLeftSubTree() const;
 
+	T Search(T key) const;
 
 	bool IsEmpty() const;
 	int getCount() const;

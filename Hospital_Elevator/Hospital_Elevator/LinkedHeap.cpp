@@ -199,6 +199,29 @@ const LinkedHeap<T> LinkedHeap<T>::getRightSubTree() const {
 }
 
 template <typename T>
+T LinkedHeap<T>::Search(T key) const {
+	if (root == nullptr)
+		return 0;
+
+	if (key == root->getData())
+		return root->getData();
+
+	search(key, root);
+}
+
+template <typename T>
+T LinkedHeap<T>::search(T key, HeapNode<T>* subTreeRoot) const {
+	if (subTreeRoot == nullptr)
+		return 0;
+
+	if (key == subTreeRoot->getData())
+		return subTreeRoot->getData();
+
+	search(key, subTreeRoot->getLeft());
+	search(key, subTreeRoot->getRight());
+}
+
+template <typename T>
 const LinkedHeap<T> LinkedHeap<T>::getLeftSubTree() const {
 	LinkedHeap<T> LH;
 	LH.root = root->getLeft();

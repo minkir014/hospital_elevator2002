@@ -2,10 +2,7 @@
 #include <string>
 #include "UI.h"
 
-Hospital::Hospital() : TimeStep(0) {
-	
-
-}
+Hospital::Hospital() : TimeStep(0) {}
 
 Hospital::~Hospital() {}
 
@@ -13,11 +10,13 @@ void Hospital::IncrementTimeStep() {
 	TimeStep++;
 }
 
+int Hospital::getTimeStep() const {	return TimeStep; }
+
 void Hospital::InitializeLists() {
 	InputFile.open(InterfaceController.getInputFileName(), ios::in);
 	int noOfFloors;
 	InputFile >> noOfFloors;
-	Floors = new ArrayBag<Floor>(noOfFloors);
+	Floors = new ArrayBag<Floor*>(noOfFloors);
 
 	int V_Speed, C_Speed, P_Speed;
 	InputFile >> V_Speed >> C_Speed >> P_Speed;
