@@ -11,12 +11,14 @@ void Hospital::IncrementTimeStep() {
 }
 
 int Hospital::getTimeStep() const { return TimeStep; }
+Floor* Hospital::getFloor(int number) const { return Floors[number]; }
 
 void Hospital::ExecuteEvents() {
 	TimeStep = 1;
 	Event* ev = nullptr;
+	Events.Peek(ev);
+
 	while (true) {
-		Events.Peek(ev);
 
 		if (TimeStep == ev->getEventTime()) {
 			Events.Dequeue(ev);
@@ -35,7 +37,10 @@ void Hospital::ExecuteEvents() {
 			if (a)
 				break;
 		}
-		TimeStep++;
+
+		Events.Peek(ev);
+		if (ev->getEventTime() != TimeStep)
+			TimeStep++;
 	}
 }
 
@@ -69,9 +74,8 @@ void Hospital::InitializeLists() {
 	Event* ev = nullptr;
 
 	while (InputFile >> EventType) {
-		InputFile >> PickableType >> timestep >> id >> srcFloor >> targetFloor;
-
 		if (EventType == 'A') {
+			InputFile >> PickableType >> timestep >> id >> srcFloor >> targetFloor;
 			if (PickableType == 'P') {
 				InputFile >> emergency;
 				ev = new EventArrival(Arrival, id, emergency, timestep, P, srcFloor, targetFloor);
@@ -83,9 +87,11 @@ void Hospital::InitializeLists() {
 
 		}
 		else if (EventType == 'L') {
+			InputFile >> timestep >> id;
 			ev = new Event(leave, timestep, id);
 		}
 		else {
+			InputFile >> timestep >> id;
 			ev = new Event(Stair, timestep, id);
 		}
 

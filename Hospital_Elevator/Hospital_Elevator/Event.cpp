@@ -13,12 +13,3 @@ Event::Event(EventTypes CEventType, int CEventTime, int CID)
 }
 
 int Event::getEventTime() const { return EventTime; }
-
-bool Event::execute(Hospital* hos) { 
-
-	return true;
-}
-
-Event::~Event()
-{
-}
