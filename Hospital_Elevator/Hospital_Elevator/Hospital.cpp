@@ -11,6 +11,7 @@ void Hospital::IncrementTimeStep() {
 }
 
 int Hospital::getTimeStep() const { return TimeStep; }
+
 Floor* Hospital::getFloor(int number) const { return Floors[number]; }
 
 void Hospital::ExecuteEvents() {

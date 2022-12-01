@@ -1,7 +1,7 @@
 #include "PickablePtr.h"
 #include "Hospital.h"
 
-PickablePtr::PickablePtr(Pickable* ptr) { this->ptr = ptr; temp = false; }
+PickablePtr::PickablePtr(Pickable* ptr, const Hospital* hos) { this->ptr = ptr; temp = false; this->hos = hos; }
 
 PickablePtr::PickablePtr(int tempID) { ptr = new Pickable(tempID, 0, 0); temp = true; }
 

@@ -15,7 +15,7 @@ EventArrival::EventArrival(EventTypes CEventType, int CID, int CPriority, int CA
 
 bool EventArrival::execute(Hospital* hos) {
 	Pickable* pick = new Pickable(ID, EventTime, Trgfloor);
-	PickablePtr ptr(pick);
+	PickablePtr ptr(pick, hos);
 
 	if (Trgfloor - Srcfloor > 0)
 		hos->getFloor(Srcfloor)->EnqueueUp(ptr);
