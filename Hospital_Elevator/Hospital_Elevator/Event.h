@@ -13,9 +13,9 @@ protected:
 
 public:
 	Event(EventTypes CEventType, int CEventTime,int CID);
-	virtual bool execute(Hospital* hos);
-	int getEventTime() const;
-	~Event();
+	virtual bool execute(Hospital* hos) = 0;
+	virtual int getEventTime() const;
+	virtual ~Event() {}
 };
 
 

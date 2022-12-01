@@ -21,24 +21,32 @@ bool PickablePtr::operator==(const PickablePtr obj) {
 }
 
 bool PickablePtr::operator<(PickablePtr obj) {
+	ptr->resetPriority(hos->getTimeStep());
+	obj.ptr->resetPriority(hos->getTimeStep());
 	if (ptr->getPriority() < obj.getPickablePtr()->getPriority())
 		return true;
 	return false;
 }
 
 bool PickablePtr::operator<=(PickablePtr obj) {
+	ptr->resetPriority(hos->getTimeStep());
+	obj.ptr->resetPriority(hos->getTimeStep());
 	if (ptr->getPriority() <= obj.getPickablePtr()->getPriority())
 		return true;
 	return false;
 }
 
 bool PickablePtr::operator>(PickablePtr obj) {
+	ptr->resetPriority(hos->getTimeStep());
+	obj.ptr->resetPriority(hos->getTimeStep());
 	if (ptr->getPriority() > obj.getPickablePtr()->getPriority())
 		return true;
 	return false;
 }
 
 bool PickablePtr::operator>=(PickablePtr obj) {
+	ptr->resetPriority(hos->getTimeStep());
+	obj.ptr->resetPriority(hos->getTimeStep());
 	if (ptr->getPriority() >= obj.getPickablePtr()->getPriority())
 		return true;
 	return false;

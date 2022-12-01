@@ -72,6 +72,26 @@ void Floor::TraversePickables(int* Vup, int* Vdown, int* Cup, int* Cdown, int* P
 int Floor::GetUpHeapSize() const {return Up.getCount();}
 int Floor::GetdownHeapSize() const{ return Down.getCount();}
 
+bool Floor::EnqueueUp(PickablePtr ptr) {
+	Up.Insert(ptr);
+}
+bool Floor::EnqueuDown(PickablePtr ptr) {
+	Down.Insert(ptr);
+}
+
+PickablePtr Floor::getPickable(PickablePtr key) const {
+	PickablePtr ptr = Up.Search(key);
+	if (!(ptr == 0))
+		return ptr;
+	
+	ptr = Down.Search(key);
+	if (!(ptr == 0))
+		return ptr;
+
+	return 0;
+
+}
+
 bool Floor::isWaiting() const {
 	if (Up.IsEmpty() && Down.IsEmpty())
 		return false;

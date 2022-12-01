@@ -42,6 +42,8 @@ public:
 	Hospital();
 	~Hospital();
 
+	Floor* getFloor(int number) const;
+
 	void OutputToFile();
 	void InitializeLists();
 

@@ -19,5 +19,10 @@ public:
 	int GetUpHeapSize() const ; // will need to Intialize arrays int traverse Functions ; 
 	int GetdownHeapSize() const;
 
+	bool EnqueueUp(PickablePtr ptr);
+	bool EnqueuDown(PickablePtr ptr);
+
+	PickablePtr getPickable(PickablePtr key) const;
+
 	bool isWaiting() const;
 };
