@@ -61,18 +61,22 @@ void Hospital::InitializeLists() {
 	}
 
 }
-/*void Hospital::OutputToScreen() {
+void Hospital::OutputToScreen() {
 	cout << "Current Timestep :" << TimeStep << endl; 
-	int loop = 
+	int* Vup, Vdown, Cup, Cdown, Pup, Pdown;
+	int Vupsize = 0;
+	int Vdownsize = 0;
+	int Cupsize = 0;  
+	int Cdownsize = 0; 
+	int Pupsize = 0;
+	int Pdownsize = 0; 
+	// PrintWaiting Patients/Cargos/Visitor;
+	// LFloors.
 
-	// PrintWaitingPatients 
-	// PrintWaitingCargos
-	// PrintWaintingVisitor
 
 
-
+	
 
 
 }	
 
-*/

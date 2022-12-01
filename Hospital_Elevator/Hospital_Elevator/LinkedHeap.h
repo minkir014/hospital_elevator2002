@@ -35,8 +35,6 @@ public:
 	T Search(T key) const;
 
 	bool IsEmpty() const;
-
 	int getCount() const;
 };
-
 #include "LinkedHeap.cpp"

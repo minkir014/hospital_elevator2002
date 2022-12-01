@@ -148,6 +148,7 @@
     <ClInclude Include="Event.h" />
     <ClInclude Include="EventArrival.h" />
     <ClInclude Include="Floor.h" />
+    <ClInclude Include="AllHeaders.h" />
     <ClInclude Include="LinkedBag.h" />
     <ClInclude Include="LinkedHeap.h" />
     <ClInclude Include="Heap.h" />

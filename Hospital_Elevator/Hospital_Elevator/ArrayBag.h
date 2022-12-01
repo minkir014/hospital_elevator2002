@@ -14,7 +14,8 @@ private:
 	bool isFull() const;
 public:
 	ArrayBag(int cap);
-	ArrayBag(const ArrayBag<T>& B); //Copy constructor
+	
+	ArrayBag(const ArrayBag<T> &B); //Copy constructor
 	~ArrayBag();
 
 	int GetSize() const;
@@ -22,6 +23,7 @@ public:
 	bool isEmpty() const;
 
 	bool add(const T& entry);
+	
 	bool remove(T& entry);
 
 };
