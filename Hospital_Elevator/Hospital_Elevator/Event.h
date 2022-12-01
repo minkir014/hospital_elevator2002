@@ -3,7 +3,7 @@
 #include "Defs.h"
 using namespace std;
 
-
+class Hospital;
 class Event
 {
 protected:
@@ -13,6 +13,8 @@ protected:
 
 public:
 	Event(EventTypes CEventType, int CEventTime,int CID);
+	virtual bool execute(Hospital* hos);
+	int getEventTime() const;
 	~Event();
 };
 

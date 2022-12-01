@@ -12,8 +12,9 @@ private:
 
 public:
 	EventArrival(EventTypes CEventType, int CID, int CPriority, int CArrivaltime, E_UserType CType, int CSrcfloor, int CTrgfloor);
-
+	bool execute(Hospital* hos);
 
 	~EventArrival();
 };
 
+// Execute Event should pass a hospital pointer.

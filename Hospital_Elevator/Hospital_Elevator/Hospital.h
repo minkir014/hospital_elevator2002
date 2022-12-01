@@ -21,7 +21,8 @@ private:
 	Elevator* VisitorElevator;
 	Elevator* CargoElevator;
 
-	ArrayBag<Floor*>* Floors;
+	Floor** Floors;
+	int numOfFloors;
 	LinkedQueue<Event*> Events;
 	
 	LinkedBag<PickablePtr> Stairs;

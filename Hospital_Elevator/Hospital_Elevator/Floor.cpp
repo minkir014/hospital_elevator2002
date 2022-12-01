@@ -79,3 +79,10 @@ void Floor::TraversePickables(int* Vup, int* Vdown, int* Cup, int* Cdown, int* P
 
 int Floor::GetUpHeapSize() const {return Up.getCount();}
 int Floor::GetdownHeapSize() const{ return Down.getCount();}
+
+bool Floor::isWaiting() const {
+	if (Up.IsEmpty() && Down.IsEmpty())
+		return false;
+
+	return true;
+}

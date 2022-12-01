@@ -1,5 +1,6 @@
 #include "EventArrival.h"
 #include "Defs.h"
+#include "Hospital.h"
 
 
 
@@ -11,5 +12,11 @@ EventArrival::EventArrival(EventTypes CEventType, int CID, int CPriority, int CA
 	Trgfloor = CTrgfloor;
 
 }
+
+bool EventArrival::execute(Hospital* hos) {
+
+	return true;
+}
+
 EventArrival::~EventArrival()
 {}

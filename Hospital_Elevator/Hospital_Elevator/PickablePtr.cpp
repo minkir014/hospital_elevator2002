@@ -1,4 +1,5 @@
-	#include "PickablePtr.h"
+#include "PickablePtr.h"
+#include "Hospital.h"
 
 PickablePtr::PickablePtr(Pickable* ptr) { this->ptr = ptr; temp = false; }
 
@@ -12,7 +13,7 @@ Pickable* PickablePtr::getPickablePtr() const { return ptr; }
 
 bool PickablePtr::destroyPickable() { delete ptr; return true; }
 
-bool PickablePtr::operator==(PickablePtr obj) {
+bool PickablePtr::operator==(const PickablePtr obj) {
 	if (ptr->getID() == obj.getPickablePtr()->getID())
 		return true;
 

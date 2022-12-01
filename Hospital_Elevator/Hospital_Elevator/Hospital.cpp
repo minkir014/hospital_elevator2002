@@ -10,13 +10,45 @@ void Hospital::IncrementTimeStep() {
 	TimeStep++;
 }
 
-int Hospital::getTimeStep() const {	return TimeStep; }
+int Hospital::getTimeStep() const { return TimeStep; }
+
+void Hospital::ExecuteEvents() {
+	TimeStep = 1;
+	Event* ev = nullptr;
+	while (true) {
+		Events.Peek(ev);
+
+		if (TimeStep == ev->getEventTime()) {
+			Events.Dequeue(ev);
+			ev->execute(this);
+		}
+
+		OutputToScreen();
+		bool a = true;
+
+		if (Events.isEmpty() && Stairs.isEmpty()) {
+			for (int i = 0; i < numOfFloors; i++)
+				if (Floors[i]->isWaiting()) {
+					a = false;
+					break;
+				}
+			if (a)
+				break;
+		}
+		TimeStep++;
+	}
+}
+
 
 void Hospital::InitializeLists() {
 	InputFile.open(InterfaceController.getInputFileName(), ios::in);
 	int noOfFloors;
 	InputFile >> noOfFloors;
-	Floors = new ArrayBag<Floor*>(noOfFloors);
+	Floors = new Floor * [noOfFloors];
+	numOfFloors = noOfFloors;
+
+	for (int i = 0; i < noOfFloors; i++)
+		Floors[i] = new Floor(i);
 
 	int V_Speed, C_Speed, P_Speed;
 	InputFile >> V_Speed >> C_Speed >> P_Speed;
@@ -62,21 +94,21 @@ void Hospital::InitializeLists() {
 
 }
 void Hospital::OutputToScreen() {
-	cout << "Current Timestep :" << TimeStep << endl; 
+	cout << "Current Timestep :" << TimeStep << endl;
 	int* Vup, Vdown, Cup, Cdown, Pup, Pdown;
 	int Vupsize = 0;
 	int Vdownsize = 0;
-	int Cupsize = 0;  
-	int Cdownsize = 0; 
+	int Cupsize = 0;
+	int Cdownsize = 0;
 	int Pupsize = 0;
-	int Pdownsize = 0; 
+	int Pdownsize = 0;
 	// PrintWaiting Patients/Cargos/Visitor;
 	// LFloors.
 
 
 
-	
 
 
-}	
+
+}
 

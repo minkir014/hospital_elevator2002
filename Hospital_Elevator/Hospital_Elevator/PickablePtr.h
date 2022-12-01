@@ -1,7 +1,7 @@
 #pragma once
 #include "Pickable.h"
-#include "Hospital.h"
 
+class Hospital;
 class PickablePtr {
 private:
 	Pickable* ptr;
@@ -21,8 +21,7 @@ public:
 
 	Pickable* getPickablePtr() const;
 
-	bool operator==(PickablePtr obj);
-
+	bool operator==(const PickablePtr obj);
 	bool operator>(PickablePtr obj);
 	bool operator<(PickablePtr obj);
 	bool operator>=(PickablePtr obj);

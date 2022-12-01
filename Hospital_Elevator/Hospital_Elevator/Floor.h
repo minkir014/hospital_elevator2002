@@ -18,4 +18,6 @@ public:
 	void TraversePickables(int* Vup, int* Vdown, int* Cup, int* Cdown, int* Pup, int* Pdown, int &Vupsize, int & Vdownsize, int& Cupsize, int& Cdownsize, int& Pupsize, int& Pdownsize);
 	int GetUpHeapSize() const ; // will need to Intialize arrays int traverse Functions ; 
 	int GetdownHeapSize() const;
+
+	bool isWaiting() const;
 };

@@ -50,7 +50,7 @@ LinkedNode<T>* LinkedBag<T>::getPointer(const T& entry) const
 	LinkedNode<T>* P = Head;
 	while (!found && (P != Head))
 	{
-		if (entry == P->getItem())
+		if (P->getItem() == entry)
 			found = true;
 		else
 			P = P->getNext();
@@ -66,6 +66,8 @@ bool LinkedBag<T>::add(const T& entry)
 	newNode->setNext(Head);
 	Head = newNode;
 	count++;
+
+	return true;
 }
 
 template <typename T>
