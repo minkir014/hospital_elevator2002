@@ -6,7 +6,7 @@
 #include "LinkedHeap.h"; 
 #include "Pickableptr.h";
 
-Floor::Floor(int Cfloor) :CurrentFloor(Cfloor) {} 
+Floor::Floor(int Cfloor) :CurrentFloor(Cfloor), Up(false), Down(false) {}
 
 void Floor::TraversePickables(int* Vup, int* Vdown, int* Cup, int* Cdown, int* Pup, int* Pdown, int& Vupsize, int& Vdownsize, int& Cupsize, int& Cdownsize, int& Pupsize, int& Pdownsize) {
 	//  sizes should be passed [Zero]; 

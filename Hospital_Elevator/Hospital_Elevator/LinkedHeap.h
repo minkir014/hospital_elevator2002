@@ -19,7 +19,7 @@ private:
 
 	T search(T obj, HeapNode<T>* subTreeRoot) const;
 public:
-	LinkedHeap(bool temp = false);
+	LinkedHeap(bool temp = true);
 	LinkedHeap(const LinkedHeap<T>& lH, bool temp);
 	~LinkedHeap();
 

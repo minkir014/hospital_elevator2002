@@ -4,7 +4,7 @@
 #include "EventLeave.h"
 Hospital::Hospital() : TimeStep(0) {}
 
-Hospital::~Hospital() {}
+Hospital::~Hospital() { int a = 0; }
 
 void Hospital::IncrementTimeStep() {
 	TimeStep++;
@@ -129,6 +129,8 @@ void Hospital::OutputToScreen() {
 		int s = i + 1; 
 		InterfaceController.PrintFloor(s);
 
+		delete[] Vup; delete[] Pup; delete[] Cup; delete[] Vdown; delete[] Pdown; delete[] Cdown;
+
 	}
 	
 
@@ -136,4 +138,3 @@ void Hospital::OutputToScreen() {
 
 
 }
-
