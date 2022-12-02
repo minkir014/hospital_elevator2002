@@ -140,13 +140,13 @@ bool LinkedHeap<T>::Delete(T& Value) {
 	}
 
 	if (int(count * n / determiner) % 2 == 0) {
-		Value = root->setData();
+		Value = root->getData();
 		root->setData(ptr->getLeft()->getData());
 		delete ptr->getLeft();
 		ptr->setLeftPtr(nullptr);
 	}
 	else {
-		Value = root->setData();
+		Value = root->getData();
 		root->setData(ptr->getRight()->getData());
 		delete ptr->getRight();
 		ptr->setRightPtr(nullptr);
@@ -165,14 +165,57 @@ bool LinkedHeap<T>::Delete(T& Value) {
 }
 
 template <typename T>
-bool LinkedHeap<T>::removeObj(const T& value) {
+void LinkedHeap<T>::resetCount(HeapNode<T>* SubTreeRoot, int& c) {
+	if (SubTreeRoot == nullptr)
+		return;
+
+	c++;
+	resetCount(SubTreeRoot->getLeft(), c);
+	resetCount(SubTreeRoot->getRight(), c);
+}
+
+template <typename T>
+bool LinkedHeap<T>::removeObj(T& value) {
+
+	if (root->getData() == value) {
+		this->Delete(value);
+		return true;
+	}
+
 	HeapNode<T>* ptr = search(value, root);
 	LinkedHeap<T> LH;
-	LH.root = ptr;
 
-	T& V;
-	return LH.Delete(V);
+	if (ptr == nullptr)
+		return false;
 
+	HeapNode<T>* ToBeDeleted = nullptr;
+
+	bool leftOrRight = false;
+
+	if (ptr->getLeft()->getData() == value) {
+		leftOrRight = true;
+		ToBeDeleted = ptr->getLeft();
+	}
+	else
+		ToBeDeleted = ptr->getRight();
+
+	LH.root = ToBeDeleted;
+
+	int c = 0;
+	LH.resetCount(ToBeDeleted, c);
+	LH.count = c;
+	T& V = value;
+	bool state = LH.Delete(V);
+
+	if (c == 1)
+		if (leftOrRight)
+			ptr->setLeftPtr(LH.root);
+		else
+			ptr->setRightPtr(LH.root);
+
+	count--;
+
+	return state;
 
 }
 
@@ -231,7 +274,12 @@ T LinkedHeap<T>::Search(T key) const {
 		return root->getData();
 
 	HeapNode<T>* ptr = search(key, root);
-	if (ptr != nullptr) return ptr->getData();
+	if (ptr != nullptr)
+		if (ptr->getLeft()->getData() == key)
+			return ptr->getLeft()->getData();
+		else
+			return ptr->getRight()->getData();
+
 	else return 0;
 }
 
@@ -240,7 +288,16 @@ HeapNode<T>* LinkedHeap<T>::search(T key, HeapNode<T>* subTreeRoot) const {
 	if (subTreeRoot == nullptr)
 		return 0;
 
-	if (key == subTreeRoot->getData())
+	if (subTreeRoot->getLeft() == nullptr)
+		return 0;
+
+	if (key == subTreeRoot->getLeft()->getData())
+		return subTreeRoot;
+
+	if (subTreeRoot->getRight() == nullptr)
+		return 0;
+
+	if (key == subTreeRoot->getRight()->getData())
 		return subTreeRoot;
 
 	HeapNode<T>* obj = search(key, subTreeRoot->getLeft());

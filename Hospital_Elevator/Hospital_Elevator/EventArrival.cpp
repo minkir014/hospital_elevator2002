@@ -14,7 +14,7 @@ EventArrival::EventArrival(EventTypes CEventType, int CID, int CPriority, int CA
 }
 
 bool EventArrival::execute(Hospital* hos) {
-	Pickable* pick = new Pickable(ID, EventTime, Trgfloor);
+	Pickable* pick = new Pickable(ID, Priority, EventTime, Type, Srcfloor, Trgfloor);
 	PickablePtr ptr(pick, hos);
 
 	if (Trgfloor - Srcfloor > 0)

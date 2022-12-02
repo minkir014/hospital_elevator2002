@@ -18,6 +18,8 @@ private:
 	bool DestroyHeap(HeapNode<T>* SubTreeRoot);
 
 	HeapNode<T>* search(T obj, HeapNode<T>* subTreeRoot) const;
+
+	void resetCount(HeapNode<T>* subTreeRoot, int& c);
 public:
 	LinkedHeap(bool temp = true);
 	LinkedHeap(const LinkedHeap<T>& lH, bool temp);
@@ -28,7 +30,7 @@ public:
 	bool ReBuild();
 
 	bool Delete(T& Value);
-	bool removeObj(const T& value);
+	bool removeObj(T& value);
 
 	T peekTop() const;
 

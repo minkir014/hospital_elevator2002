@@ -88,7 +88,9 @@ bool Floor::EnqueuDown(PickablePtr ptr) {
 }
 
 bool Floor::DeletePickable(PickablePtr ptr) {
-	//if 
+	if (Up.removeObj(ptr)) return true;
+	if (Down.removeObj(ptr)) return true;
+	return false;
 }
 
 PickablePtr Floor::getPickable(PickablePtr key) const {

@@ -160,6 +160,7 @@
     <ClInclude Include="PickablePtr.h" />
     <ClInclude Include="QNode.h" />
     <ClInclude Include="Queue.h" />
+    <ClInclude Include="EventStair.h" />
     <ClInclude Include="UI.h" />
   </ItemGroup>
   <ItemGroup>
@@ -176,6 +177,7 @@
     <ClCompile Include="EventArrival.cpp" />
     <ClCompile Include="EventLeave.cpp" />
     <ClCompile Include="EventLeave.h" />
+    <ClCompile Include="EventStair.cpp" />
     <ClCompile Include="Floor.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
