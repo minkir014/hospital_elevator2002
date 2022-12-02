@@ -104,7 +104,7 @@ void UI::PrintWaitingVisitors(int& sizeUp, int* Up, int& sizeDown, int* Down) co
 }
 void UI::PrintFloor(int& FloorNumber) const {
     if (FloorNumber == 1)  cout << "------------------------ GROUND -------------------" << endl;
-    else cout << "------------------------ Floor " << FloorNumber << "-------------------"; 
+    else cout << "------------------------ Floor " << FloorNumber << "-------------------" << endl;
 }
 
 string UI::getOutputFileName() const {
