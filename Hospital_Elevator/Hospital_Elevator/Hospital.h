@@ -25,7 +25,7 @@ private:
 	int numOfFloors;
 	LinkedQueue<Event*> Events;
 	
-	LinkedBag<PickablePtr> Stairs;
+	LinkedHeap<PickablePtr> Stairs;
 	LinkedQueue<PickablePtr> Finished;
 
 	int TimeStep;
@@ -43,11 +43,13 @@ public:
 	~Hospital();
 
 	Floor* getFloor(int number) const;
+	int getFloorCount() const;
 
 	void OutputToFile();
 	void InitializeLists();
 
 	void ExecuteEvents();
+	bool stairPickable(PickablePtr& obj);
 
 	int getTimeStep() const;
 

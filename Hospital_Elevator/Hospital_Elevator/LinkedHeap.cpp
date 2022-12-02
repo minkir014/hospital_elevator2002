@@ -177,6 +177,9 @@ void LinkedHeap<T>::resetCount(HeapNode<T>* SubTreeRoot, int& c) {
 template <typename T>
 bool LinkedHeap<T>::removeObj(T& value) {
 
+	if (root == nullptr)
+		return false;
+
 	if (root->getData() == value) {
 		this->Delete(value);
 		return true;

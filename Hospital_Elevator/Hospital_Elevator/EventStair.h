@@ -3,7 +3,7 @@
 #include "Defs.h"
 #include "PickablePtr.h"
 
-class EventStair : Event {
+class EventStair : public Event {
 public:
 	EventStair(EventTypes CEventType, int CEventTime, int CID);
 	~EventStair();

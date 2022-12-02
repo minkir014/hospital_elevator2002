@@ -7,5 +7,11 @@ EventStair::~EventStair() { }
 
 bool EventStair::execute(Hospital* hos) {
 	PickablePtr ptr(ID);
-	// return hos
+	int c = hos->getFloorCount();
+
+	for (int i = 0; i < c; i++)
+		if (hos->getFloor(i)->DeletePickable(ptr))
+			return hos->stairPickable(ptr);
+
+	return true;
 }

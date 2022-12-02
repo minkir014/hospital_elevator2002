@@ -25,7 +25,7 @@ public:
 	bool DequeueUp(PickablePtr& ptr);
 	bool DequeueDown(PickablePtr& ptr);
 
-	bool DeletePickable(PickablePtr ptr);
+	bool DeletePickable(PickablePtr& ptr);
 
 	PickablePtr getPickable(PickablePtr key) const;
 

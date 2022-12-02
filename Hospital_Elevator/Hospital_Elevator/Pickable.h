@@ -13,16 +13,19 @@ private:
 	E_UserType Type;			//"Patients" , "Visitors" , "Cargo"
 	int Srcfloor;			//Source floor 
 	int Trgfloor;			//Target floor
+	int TargetTime;			// Target Time
 
 public:
 	Pickable(int CID, int CPriority, int CArrivaltime, E_UserType CType,int CSrcfloor,int CTrgfloor);
 	Pickable(int CID, int CArrivaltime, int CTrgfloor);
 	int getID();
 	int getPriority();
-	void resetPriority(int timestep);
+	void resetPriority(int PriorityVariable, bool stairs);
 	int getArrivalTime();
 	int getSrcfloor();
 	int getTrgfloor();
+	int getTargetTime() const;
+	void setTargetTime(int TT);
 	E_UserType getType();
 	~Pickable();
 

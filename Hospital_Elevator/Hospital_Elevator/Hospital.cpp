@@ -2,6 +2,7 @@
 #include <string>
 #include "UI.h"
 #include "EventLeave.h"
+#include "EventStair.h"
 Hospital::Hospital() : TimeStep(0) {}
 
 Hospital::~Hospital() { int a = 0; }
@@ -13,6 +14,7 @@ void Hospital::IncrementTimeStep() {
 int Hospital::getTimeStep() const { return TimeStep; }
 
 Floor* Hospital::getFloor(int number) const { return Floors[number]; }
+int Hospital::getFloorCount() const { return numOfFloors; }
 
 void Hospital::ExecuteEvents() {
 	TimeStep = 1;
@@ -36,7 +38,7 @@ void Hospital::ExecuteEvents() {
 
 		bool a = true;
 
-		if (Events.isEmpty() && Stairs.isEmpty()) {
+		if (Events.isEmpty() && Stairs.IsEmpty()) {
 			for (int i = 0; i < numOfFloors; i++)
 				if (Floors[i]->isWaiting()) {
 					a = false;
@@ -47,6 +49,13 @@ void Hospital::ExecuteEvents() {
 		}
 
 	}
+}
+
+bool Hospital::stairPickable(PickablePtr& obj) {
+	obj.setStairs();
+	Stairs.Insert(obj);
+
+	return true;
 }
 
 
@@ -97,7 +106,7 @@ void Hospital::InitializeLists() {
 		}
 		else {
 			InputFile >> timestep >> id;
-			ev = new EventLeave(Stair, timestep, id);
+			ev = new EventStair(Stair, timestep, id);
 		}
 
 		Events.Enqueue(ev);
