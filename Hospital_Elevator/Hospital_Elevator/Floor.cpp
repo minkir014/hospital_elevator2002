@@ -87,6 +87,10 @@ bool Floor::EnqueuDown(PickablePtr ptr) {
 	
 }
 
+bool Floor::DeletePickable(PickablePtr ptr) {
+	//if 
+}
+
 PickablePtr Floor::getPickable(PickablePtr key) const {
 	PickablePtr ptr = Up.Search(key);
 	if (!(ptr == 0))

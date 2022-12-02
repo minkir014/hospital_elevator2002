@@ -104,11 +104,12 @@ HeapNode<T>* LinkedHeap<T>::insert(HeapNode<T>* parent, HeapNode<T>* newNode, in
 }
 
 template <typename T>
-bool LinkedHeap<T>::Delete() {
+bool LinkedHeap<T>::Delete(T& Value) {
 	if (root == nullptr)
 		return false;
 
 	if (count == 1) {
+		Value = root->getData();
 		delete root;
 		root = nullptr;
 		count--;
@@ -139,11 +140,13 @@ bool LinkedHeap<T>::Delete() {
 	}
 
 	if (int(count * n / determiner) % 2 == 0) {
+		Value = root->setData();
 		root->setData(ptr->getLeft()->getData());
 		delete ptr->getLeft();
 		ptr->setLeftPtr(nullptr);
 	}
 	else {
+		Value = root->setData();
 		root->setData(ptr->getRight()->getData());
 		delete ptr->getRight();
 		ptr->setRightPtr(nullptr);
@@ -163,6 +166,13 @@ bool LinkedHeap<T>::Delete() {
 
 template <typename T>
 bool LinkedHeap<T>::removeObj(const T& value) {
+	HeapNode<T>* ptr = search(value, root);
+	LinkedHeap<T> LH;
+	LH.root = ptr;
+
+	T& V;
+	return LH.Delete(V);
+
 
 }
 
@@ -220,19 +230,22 @@ T LinkedHeap<T>::Search(T key) const {
 	if (key == root->getData())
 		return root->getData();
 
-	search(key, root);
+	HeapNode<T>* ptr = search(key, root);
+	if (ptr != nullptr) return ptr->getData();
+	else return 0;
 }
 
 template <typename T>
-T LinkedHeap<T>::search(T key, HeapNode<T>* subTreeRoot) const {
+HeapNode<T>* LinkedHeap<T>::search(T key, HeapNode<T>* subTreeRoot) const {
 	if (subTreeRoot == nullptr)
 		return 0;
 
 	if (key == subTreeRoot->getData())
-		return subTreeRoot->getData();
+		return subTreeRoot;
 
-	search(key, subTreeRoot->getLeft());
-	search(key, subTreeRoot->getRight());
+	HeapNode<T>* obj = search(key, subTreeRoot->getLeft());
+	if (obj != nullptr) return obj;
+	return search(key, subTreeRoot->getRight());
 }
 
 template <typename T>

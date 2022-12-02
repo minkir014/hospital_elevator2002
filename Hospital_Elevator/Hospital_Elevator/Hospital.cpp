@@ -21,12 +21,19 @@ void Hospital::ExecuteEvents() {
 
 	while (true) {
 
-		if (TimeStep == ev->getEventTime()) {
+		if (ev != nullptr && TimeStep == ev->getEventTime()) {
 			Events.Dequeue(ev);
 			ev->execute(this);
 		}
 
-		OutputToScreen();
+		if (!Events.Peek(ev))
+			ev = nullptr;
+
+		if (ev == nullptr || ev->getEventTime() != TimeStep) {
+			OutputToScreen();
+			TimeStep++;
+		}
+
 		bool a = true;
 
 		if (Events.isEmpty() && Stairs.isEmpty()) {
@@ -39,9 +46,6 @@ void Hospital::ExecuteEvents() {
 				break;
 		}
 
-		Events.Peek(ev);
-		if (ev->getEventTime() != TimeStep)
-			TimeStep++;
 	}
 }
 

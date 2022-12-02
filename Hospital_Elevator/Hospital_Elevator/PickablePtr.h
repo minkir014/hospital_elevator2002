@@ -12,6 +12,7 @@ private:
 	void setPriority();
 public:
 	PickablePtr(Pickable* ptr = nullptr, const Hospital* hos = nullptr);
+	PickablePtr(const PickablePtr& obj);
 	PickablePtr(int tempId);
 	~PickablePtr();
 

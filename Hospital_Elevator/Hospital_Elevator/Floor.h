@@ -22,6 +22,11 @@ public:
 	bool EnqueueUp(PickablePtr ptr);
 	bool EnqueuDown(PickablePtr ptr);
 
+	bool DequeueUp(PickablePtr& ptr);
+	bool DequeueDown(PickablePtr& ptr);
+
+	bool DeletePickable(PickablePtr ptr);
+
 	PickablePtr getPickable(PickablePtr key) const;
 
 	bool isWaiting() const;

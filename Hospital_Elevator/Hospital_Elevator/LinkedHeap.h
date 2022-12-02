@@ -17,7 +17,7 @@ private:
 
 	bool DestroyHeap(HeapNode<T>* SubTreeRoot);
 
-	T search(T obj, HeapNode<T>* subTreeRoot) const;
+	HeapNode<T>* search(T obj, HeapNode<T>* subTreeRoot) const;
 public:
 	LinkedHeap(bool temp = true);
 	LinkedHeap(const LinkedHeap<T>& lH, bool temp);
@@ -27,7 +27,7 @@ public:
 
 	bool ReBuild();
 
-	bool Delete();
+	bool Delete(T& Value);
 	bool removeObj(const T& value);
 
 	T peekTop() const;

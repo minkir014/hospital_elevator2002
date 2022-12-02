@@ -8,7 +8,7 @@ public:
 
 	virtual bool Insert(const T& Value) = 0;
 
-	virtual bool Delete() = 0;
+	virtual bool Delete(T& Value) = 0;
 
 	virtual T peekTop() const = 0;
 	
