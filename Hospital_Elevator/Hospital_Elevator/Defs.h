@@ -20,3 +20,11 @@ enum EventTypes { //
 	Stair,
 	AutoS
 };
+enum ElevatorState {
+	IDLE, 
+	MovingUp , 
+	MovingDown , 
+	Unload , 
+	OUT, 
+	AVAIL ,
+};
