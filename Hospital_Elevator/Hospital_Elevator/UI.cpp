@@ -1,6 +1,8 @@
 #include<iostream >
 #include "UI.h"
+#include <Windows.h>
 #include <fstream>
+#include <conio.h>
 using namespace std;
 
 
@@ -65,6 +67,30 @@ string UI::getInputFileName() const {
     return InputFileName;
 }
 
+MODE UI::GetAppMode() const {
+    return AppMode;
+}
+
+void UI::PrintTimeStep(const int& TimeStep) const {
+    cout << "Current Timestep :" << TimeStep << endl;
+}
+
+void UI::PrintHeader() const {
+    cout << "\n----------------------------------------------------\n\n";
+
+    if (AppMode == Silent)
+        cout << "Silent Mode\n";
+
+    else if (AppMode == Interactive)
+        cout << "Interactive Mode\n";
+
+    else
+        cout << "Step-By-Step Mode\n";
+
+    cout << "Simulation Starts...\n";
+
+}
+
 void UI::PrintUpsAndDowns(int& sizeUp, int* Up, int& sizeDown, int* Down) const {
     cout << "UP[ "; 
     for (int i = 0; i < sizeUp; i++)
@@ -112,11 +138,23 @@ string UI::getOutputFileName() const {
 }
 
 void UI::WaitOneSecond() const {
+    Sleep(1000);
 }
 
 void UI::PrintFinalStats(int& TotalWaiting, int& VisitorLeft, int& TotalInservice, int& VisitorOnStairs, int& TotalCompleted) const
 {
+    cout << TotalWaiting << " total waiting pass/cargos (" << VisitorLeft << " visitors left)\n";
+    cout << TotalInservice << " total in-service pass/cargos (" << VisitorOnStairs << " visitors by stairs)\n";
+    cout << TotalCompleted << " total completed pass/cargos\n";
+    if (AppMode == Interactive) {
+        cout << "PRESS ENTER to continue\n";
+        _getch();
+        cout << "\n";
+    }
+}
 
+void UI::printFooter() const {
+    cout << "Simulation ends, Output file created\n";
 }
 
 

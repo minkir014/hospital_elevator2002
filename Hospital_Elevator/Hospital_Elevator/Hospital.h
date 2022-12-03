@@ -32,9 +32,8 @@ private:
 	int S;
 	int AutoS;
 
-	// AutoS
-
 	int numOfAutoS;
+	int numOfLeaveEvents;
 
 	fstream InputFile;
 	fstream OutputFile;
@@ -49,6 +48,8 @@ public:
 	Floor* getFloor(int number) const;
 	int getFloorCount() const;
 	int getS() const;
+
+	void countLeave();
 
 	void OutputToFile();
 	void InitializeLists();

@@ -7,5 +7,10 @@ EventLeave::EventLeave(EventTypes CEventType, int CEventTime, int CID) : Event(C
 
 bool EventLeave::execute(Hospital* hos) {
 	PickablePtr ptr(ID);
-	return hos->getFloor(0)->DeletePickable(ptr);
+	if (hos->getFloor(0)->DeletePickable(ptr)) {
+		hos->countLeave();
+		return true;
+	}
+
+	return false;
 }

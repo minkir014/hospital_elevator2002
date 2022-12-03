@@ -197,7 +197,7 @@ PickablePtr Floor::searchForV(const LinkedHeap<PickablePtr>& LH) const {
 		ptr2 = searchForV(LH.getRightSubTree());
 
 		ptr1 = (ptr1 < ptr2) ? ptr2 : ptr1;
-		if (ptr1 < 0)
+		if (ptr1.getPickablePtr()->getPriority() < 0)
 			return 0;
 		else return ptr1;
 	}

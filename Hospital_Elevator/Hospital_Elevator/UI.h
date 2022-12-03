@@ -28,7 +28,7 @@ public:
 
 	void PrintMsg(const string& msg) const;
 	
-	void PrintTimetamp(const int& Time) const;   // current timestamp : 78 ; 
+	void PrintTimeStep(const int& Time) const;   // current timestamp : 78 ; 
 	
 	void PressEnterToContinue() const; // after each timestamp  
 	
@@ -48,6 +48,7 @@ public:
 	
 	void WaitOneSecond() const ; // will be used in step-By-step mode 
 
-	void PrintSilentModeTxt() const; /* silent mode , Simulation Starts ,Simulation ends , Output file created*/
+	void PrintHeader() const; /* silent mode , Simulation Starts ,Simulation ends , Output file created*/
+	void printFooter() const;
 };
 #endif
