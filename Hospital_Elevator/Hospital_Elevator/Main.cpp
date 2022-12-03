@@ -12,7 +12,7 @@ int main() {
 
 	hospital.ExecuteEvents();
 
-	//hospital.OutputToFile();
+	hospital.OutputToFile();
 
-	system("pause");
+	//system("pause");
 }

@@ -34,6 +34,8 @@ void Hospital::ExecuteEvents() {
 			ev->execute(this);
 		}
 
+		Simulate();
+
 		if (!Events.Peek(ev))
 			ev = nullptr;
 
@@ -68,26 +70,31 @@ void Hospital::Simulate() {
 	int TargetFloor = 0;
 	bool load = false;
 
+	PickablePtr ptr(0);
+	for (int i = 0; i < numOfFloors; i++) {
 
-	if (TimeStep % 5 == 0) {
-		PickablePtr ptr(0);
-		for (int i = 0; i < numOfFloors; i++) {
-			if (Floors[i]->DequeueUp(ptr))
+		if (TimeStep % 5 == 0) {
+			if (Floors[i]->DequeueUp(ptr)) {
+				ptr.setCompleted();
 				Finished.Enqueue(ptr);
+			}
 
-			if (Floors[i]->DequeueDown(ptr))
+			if (Floors[i]->DequeueDown(ptr)) {
+				ptr.setCompleted();
 				Finished.Enqueue(ptr);
-
-			if (Floors[i]->getFirstVisitor().getPickablePtr()->getPriority() - 1 == AutoS) {
-				Floors[i]->DeletePickable(ptr);
-				ptr.setStairs();
-				Stairs.Insert(ptr);
-				numOfAutoS++;
 			}
 		}
+
+		if (TimeStep - Floors[i]->getFirstVisitor().getPickablePtr()->getArrivalTime() == AutoS) {
+			Floors[i]->DeletePickable(ptr);
+			ptr.setStairs();
+			Stairs.Insert(ptr);
+			numOfAutoS++;
+		}
+
 	}
 
-	PickablePtr ptr = Stairs.peekTop();
+	ptr = Stairs.peekTop();
 	if (ptr.getPickablePtr()->getPriority() * (-1) == TimeStep) {
 		Stairs.Delete(ptr);
 		ptr.setCompleted();
@@ -156,27 +163,27 @@ void Hospital::OutputToScreen() {
 	// LFloors.
 	for (int i = 0; i < numOfFloors; i++)
 	{
-		Floor* CurrentFloor = Floors[i]; 
+		Floor* CurrentFloor = Floors[i];
 		const int UpCount = CurrentFloor->GetUpHeapSize();
 		const int DownCount = CurrentFloor->GetdownHeapSize();
-		int * Vup = new int[UpCount];
-		int * Pup = new int[UpCount];
-		int * Cup = new int[UpCount];
-		int * Vdown = new int[DownCount];
-		int * Pdown = new int[DownCount];
-		int * Cdown = new int[DownCount];
+		int* Vup = new int[UpCount];
+		int* Pup = new int[UpCount];
+		int* Cup = new int[UpCount];
+		int* Vdown = new int[DownCount];
+		int* Pdown = new int[DownCount];
+		int* Cdown = new int[DownCount];
 		int Vupsize = 0;
 		int Vdownsize = 0;
 		int Cupsize = 0;
 		int Cdownsize = 0;
 		int Pupsize = 0;
 		int Pdownsize = 0;
-		CurrentFloor->TraversePickables(Vup, Vdown, Cup, Cdown, Pup, Pdown, Vupsize, Vdownsize, Cupsize, Cdownsize, Pupsize, Pdownsize); 
+		CurrentFloor->TraversePickables(Vup, Vdown, Cup, Cdown, Pup, Pdown, Vupsize, Vdownsize, Cupsize, Cdownsize, Pupsize, Pdownsize);
 		InterfaceController.PrintWaitingPatients(Pupsize, Pup, Pdownsize, Pdown);
 		InterfaceController.PrintWaitingCargos(Cupsize, Cup, Cdownsize, Cdown);
 		InterfaceController.PrintWaitingVisitors(Vupsize, Vup, Vdownsize, Vdown);
 		//InterfaceController.PrintElevator()
-		int s = i + 1; 
+		int s = i + 1;
 		InterfaceController.PrintFloor(s);
 
 		delete[] Vup; delete[] Pup; delete[] Cup; delete[] Vdown; delete[] Pdown; delete[] Cdown;
@@ -203,7 +210,7 @@ void Hospital::OutputToFile() {
 		ID = PPtr->getID();
 		if (PPtr->getServiceTime()) {
 			ST = PPtr->getServiceTime();
-			WT = ST - AT;
+			WT = TT - ST - AT;
 		}
 		else {
 			ST = 0;
@@ -218,8 +225,8 @@ void Hospital::OutputToFile() {
 	}
 
 
-	OutputFile << "******************************************************************************";
-	OutputFile << "******************************************************************************";
+	OutputFile << "***********************************\n";
+	OutputFile << "***********************************\n";
 
 	OutputFile << "Passengers: " << PCount + VCount << "\t[V: " << VCount << ", P: " << PCount << "]\n";
 	OutputFile << "Cargos: " << CCount << "\n";

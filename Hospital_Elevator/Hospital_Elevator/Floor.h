@@ -34,7 +34,7 @@ public:
 	bool DeletePickable(PickablePtr& ptr);
 
 	PickablePtr getPickable(PickablePtr key) const;
-	void ValidateFirst(const LinkedHeap<PickablePtr>&);
+	void ValidateFirst(const LinkedHeap<PickablePtr>&, const PickablePtr& ptr);
 	PickablePtr getFirstVisitor() const;
 
 	bool isWaitingUp() const;

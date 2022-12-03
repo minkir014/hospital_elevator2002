@@ -77,7 +77,7 @@ bool PickablePtr::setStairs() {
 	stairs = true;
 	int priority = abs(ptr->getTrgfloor() - ptr->getSrcfloor()) * (-1) * hos->getS() - hos->getTimeStep();
 	ptr->resetPriority(priority, stairs);
-	ptr->setServiceTime(hos->getTimeStep());
+	ptr->setServiceTime(abs(ptr->getTrgfloor() - ptr->getSrcfloor()) * hos->getS());
 	return true;
 }
 

@@ -87,7 +87,8 @@ bool Floor::EnqueueUp(PickablePtr ptr) {
 	if (FirstCargo == 0 && ptr.getPickablePtr()->getType() == C)
 		FirstCargo = ptr;
 
-	return Up.Insert(ptr);
+	bool u = Up.Insert(ptr);
+	return u;
 }
 bool Floor::EnqueuDown(PickablePtr ptr) {
 	if (FirstVisitor == 0 && ptr.getPickablePtr()->getType() == V)
@@ -101,11 +102,24 @@ bool Floor::EnqueuDown(PickablePtr ptr) {
 }
 
 bool Floor::DeletePickable(PickablePtr& ptr) {
-	if (Up.Search(ptr) == FirstVisitor) {
-		ValidateFirst(Up);
+
+	PickablePtr ptrSearch = Up.Search(ptr);
+	if (!(ptrSearch == 0)) {
+		if (ptrSearch == FirstVisitor)
+			ValidateFirst(Up, ptrSearch);
+
 		return Up.removeObj(ptr);
 	}
-	if (Down.removeObj(ptr)) return true;
+
+	ptrSearch = Down.Search(ptr);
+
+	if (!(ptrSearch == 0)) {
+		if (ptrSearch == FirstVisitor)
+			ValidateFirst(Down, ptrSearch);
+
+		return Down.removeObj(ptr);
+	}
+
 	return false;
 }
 
@@ -138,7 +152,7 @@ bool Floor::isWaitingDown() const {
 
 bool Floor::DequeueUp(PickablePtr& ptr) {
 	if (Up.peekTop() == FirstVisitor || Up.peekTop() == FirstCargo)
-		ValidateFirst(Up);
+		ValidateFirst(Up, Up.peekTop());
 
 	if (Up.Delete(ptr))
 		return true;
@@ -149,7 +163,7 @@ bool Floor::DequeueUp(PickablePtr& ptr) {
 
 bool Floor::DequeueDown(PickablePtr& ptr) {
 	if (Down.peekTop() == FirstVisitor || Down.peekTop() == FirstCargo)
-		ValidateFirst(Down);
+		ValidateFirst(Down, Down.peekTop());
 
 	if (Down.Delete(ptr))
 		return true;
@@ -158,12 +172,12 @@ bool Floor::DequeueDown(PickablePtr& ptr) {
 		return false;
 }
 
-void Floor::ValidateFirst(const LinkedHeap<PickablePtr>& LH) {
+void Floor::ValidateFirst(const LinkedHeap<PickablePtr>& LH, const PickablePtr& ptr) {
 
-	if (!(FirstVisitor == 0))
+	if (!(FirstVisitor == 0) && FirstVisitor == ptr)
 		FirstVisitor = searchForV(LH);
 
-	if (!(FirstCargo == 0))
+	if (!(FirstCargo == 0) && FirstCargo == ptr)
 		FirstCargo = searchForC(LH);
 
 }
@@ -178,7 +192,7 @@ PickablePtr Floor::searchForV(const LinkedHeap<PickablePtr>& LH) const {
 	PickablePtr ptr1(0);
 	PickablePtr ptr2(0);
 
-	if (ptr.getPickablePtr()->getType() == P) {
+	if (ptr.getPickablePtr()->getType() == P || ptr == FirstVisitor) {
 		ptr1 = searchForV(LH.getLeftSubTree());
 		ptr2 = searchForV(LH.getRightSubTree());
 
@@ -203,7 +217,7 @@ PickablePtr Floor::searchForC(const LinkedHeap<PickablePtr>& LH) const {
 	PickablePtr ptr1(0);
 	PickablePtr ptr2(0);
 
-	if (ptr.getPickablePtr()->getType() == P || ptr.getPickablePtr()->getType() == V) {
+	if (ptr.getPickablePtr()->getType() == P || ptr.getPickablePtr()->getType() == V || ptr == FirstCargo) {
 		ptr1 = searchForV(LH.getLeftSubTree());
 		ptr2 = searchForV(LH.getRightSubTree());
 
