@@ -3,7 +3,12 @@
 #include "UI.h"
 #include "EventLeave.h"
 #include "EventStair.h"
-Hospital::Hospital() : TimeStep(0) {}
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+
+Hospital::Hospital() : TimeStep(0), numOfAutoS(0) {}
 
 Hospital::~Hospital() { int a = 0; }
 
@@ -15,6 +20,7 @@ int Hospital::getTimeStep() const { return TimeStep; }
 
 Floor* Hospital::getFloor(int number) const { return Floors[number]; }
 int Hospital::getFloorCount() const { return numOfFloors; }
+int Hospital::getS() const { return S; }
 
 void Hospital::ExecuteEvents() {
 	TimeStep = 1;
@@ -40,7 +46,7 @@ void Hospital::ExecuteEvents() {
 
 		if (Events.isEmpty() && Stairs.IsEmpty()) {
 			for (int i = 0; i < numOfFloors; i++)
-				if (Floors[i]->isWaiting()) {
+				if (Floors[i]->isWaitingUp() && Floors[i]->isWaitingDown()) {
 					a = false;
 					break;
 				}
@@ -56,6 +62,37 @@ bool Hospital::stairPickable(PickablePtr& obj) {
 	Stairs.Insert(obj);
 
 	return true;
+}
+
+void Hospital::Simulate() {
+	int TargetFloor = 0;
+	bool load = false;
+
+
+	if (TimeStep % 5 == 0) {
+		PickablePtr ptr(0);
+		for (int i = 0; i < numOfFloors; i++) {
+			if (Floors[i]->DequeueUp(ptr))
+				Finished.Enqueue(ptr);
+
+			if (Floors[i]->DequeueDown(ptr))
+				Finished.Enqueue(ptr);
+
+			if (Floors[i]->getFirstVisitor().getPickablePtr()->getPriority() - 1 == AutoS) {
+				Floors[i]->DeletePickable(ptr);
+				ptr.setStairs();
+				Stairs.Insert(ptr);
+				numOfAutoS++;
+			}
+		}
+	}
+
+	PickablePtr ptr = Stairs.peekTop();
+	if (ptr.getPickablePtr()->getPriority() * (-1) == TimeStep) {
+		Stairs.Delete(ptr);
+		ptr.setCompleted();
+		Finished.Enqueue(ptr);
+	}
 }
 
 
@@ -95,9 +132,9 @@ void Hospital::InitializeLists() {
 				ev = new EventArrival(Arrival, id, emergency, timestep, P, srcFloor, targetFloor);
 			}
 			else if (PickableType == 'V')
-				ev = new EventArrival(Arrival, id, 0, timestep, V, srcFloor, targetFloor);
+				ev = new EventArrival(Arrival, id, 1, timestep, V, srcFloor, targetFloor);
 			else
-				ev = new EventArrival(Arrival, id, -1, timestep, C, srcFloor, targetFloor);
+				ev = new EventArrival(Arrival, id, 1, timestep, C, srcFloor, targetFloor);
 
 		}
 		else if (EventType == 'L') {
@@ -145,9 +182,51 @@ void Hospital::OutputToScreen() {
 		delete[] Vup; delete[] Pup; delete[] Cup; delete[] Vdown; delete[] Pdown; delete[] Cdown;
 
 	}
-	
+}
 
 
+void Hospital::OutputToFile() {
+	int WaitingTime = 0, ServiceTime = 0, PCount = 0, VCount = 0, CCount = 0;
+	int TT, ID, AT, WT, ST;
 
+	PickablePtr ptr(0);
+	Pickable* PPtr = nullptr;
+
+	OutputFile.open(InterfaceController.getOutputFileName(), ios::out);
+	OutputFile << "TT\tID\tAT\tWT\tST\n";
+
+	while (!Finished.isEmpty()) {
+		Finished.Dequeue(ptr);
+		PPtr = ptr.getPickablePtr();
+		TT = PPtr->getTargetTime();
+		AT = PPtr->getArrivalTime();
+		ID = PPtr->getID();
+		if (PPtr->getServiceTime()) {
+			ST = PPtr->getServiceTime();
+			WT = ST - AT;
+		}
+		else {
+			ST = 0;
+			WT = TT - AT;
+		}
+
+		OutputFile << TT << "\t" << ID << "\t" << AT << "\t" << WT << "\t" << ST << "\n";
+		WaitingTime += WT; ServiceTime += ST;
+		if (PPtr->getType() == P) PCount++;
+		else if (PPtr->getType() == V) VCount++;
+		else CCount++;
+	}
+
+
+	OutputFile << "******************************************************************************";
+	OutputFile << "******************************************************************************";
+
+	OutputFile << "Passengers: " << PCount + VCount << "\t[V: " << VCount << ", P: " << PCount << "]\n";
+	OutputFile << "Cargos: " << CCount << "\n";
+
+	OutputFile << "Avg Wait = " << fixed << setprecision(2) << (double)WaitingTime / (PCount + VCount + CCount) << "\n";
+	OutputFile << "Avg Serv = " << fixed << setprecision(2) << (double)ServiceTime / (PCount + VCount + CCount) << "\n";
+
+	OutputFile << "AutoS: " << fixed << setprecision(2) << (double)numOfAutoS / VCount * 100 << "%\n";
 
 }

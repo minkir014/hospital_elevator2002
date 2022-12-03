@@ -17,6 +17,8 @@ bool EventArrival::execute(Hospital* hos) {
 	Pickable* pick = new Pickable(ID, Priority, EventTime, Type, Srcfloor, Trgfloor);
 	PickablePtr ptr(pick, hos);
 
+	pick->resetPriority(hos->getTimeStep(), false);
+
 	if (Trgfloor - Srcfloor > 0)
 		hos->getFloor(Srcfloor)->EnqueueUp(ptr);
 	else

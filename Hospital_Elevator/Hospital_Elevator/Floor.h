@@ -6,8 +6,14 @@
 class Floor {
 private:
 	int CurrentFloor;
+	PickablePtr FirstVisitor;
+	PickablePtr FirstCargo;
 	LinkedHeap<PickablePtr> Up;
 	LinkedHeap<PickablePtr> Down;
+
+
+	PickablePtr searchForV(const LinkedHeap<PickablePtr>& LH) const;
+	PickablePtr searchForC(const LinkedHeap<PickablePtr>& LH) const;
 
 	//PickablePtr // To be asked about
 	//Traverse in Heap
@@ -28,6 +34,9 @@ public:
 	bool DeletePickable(PickablePtr& ptr);
 
 	PickablePtr getPickable(PickablePtr key) const;
+	void ValidateFirst(const LinkedHeap<PickablePtr>&);
+	PickablePtr getFirstVisitor() const;
 
-	bool isWaiting() const;
+	bool isWaitingUp() const;
+	bool isWaitingDown() const;
 };

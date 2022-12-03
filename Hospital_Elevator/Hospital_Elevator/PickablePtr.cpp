@@ -3,7 +3,7 @@
 #include <math.h>
 
 PickablePtr::PickablePtr(Pickable* ptr, const Hospital* hos, bool tmp, bool stair) { 
-	this->ptr = ptr; temp = tmp; this->hos = hos; stairs = stair; completed = false;
+	this->ptr = ptr; temp = false; this->hos = hos; stairs = stair; completed = false;
 }
 
 PickablePtr::PickablePtr(const PickablePtr& obj) { 
@@ -75,6 +75,9 @@ bool PickablePtr::operator>=(PickablePtr obj) {
 
 bool PickablePtr::setStairs() {
 	stairs = true;
+	int priority = abs(ptr->getTrgfloor() - ptr->getSrcfloor()) * (-1) * hos->getS() - hos->getTimeStep();
+	ptr->resetPriority(priority, stairs);
+	ptr->setServiceTime(hos->getTimeStep());
 	return true;
 }
 
@@ -86,10 +89,9 @@ bool PickablePtr::setCompleted() {
 }
 
 void PickablePtr::setPriority() {
-	if (!stairs && !completed)
-		ptr->resetPriority(hos->getTimeStep(), stairs);
-	else if (stairs)
-		ptr->resetPriority(abs(ptr->getTrgfloor() - ptr->getSrcfloor()), stairs);
-	else
-		ptr->resetPriority(ptr->getTargetTime(), completed);
+	if (!( * this == 0))
+		if (!stairs && !completed)
+			ptr->resetPriority(hos->getTimeStep(), stairs);
+		else if (completed)
+			ptr->resetPriority(ptr->getTargetTime(), completed);
 }

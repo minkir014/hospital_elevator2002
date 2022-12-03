@@ -23,7 +23,7 @@ public:
 	int getCurrentFloor() const; 
 	int getSpeed() const; 
 	int getTimeOfLastFloor() const;
-	void UpdateState( int & timestep, int &Floor , int &maxFloor);
+	void UpdateState( int & timestep, int &Floor , int &maxFloor, bool& load);
 	int getCapacity() const; 
 
 	~Elevator();

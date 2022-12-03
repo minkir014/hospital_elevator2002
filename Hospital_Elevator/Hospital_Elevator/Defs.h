@@ -26,5 +26,6 @@ enum ElevatorState {
 	MovingDown , 
 	Unload , 
 	OUT, 
-	AVAIL ,
+	AVAIL,
+	Load
 };

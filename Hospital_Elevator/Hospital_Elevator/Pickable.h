@@ -8,11 +8,13 @@ class Pickable
 {
 private:
 	int ID;					//unique for each entity
-	int Priority;			//0 for Visitors ,-1 for Cargo ,<0 for Patients  
+	int Priority;			// Variable with waiting time
+	int Emergency;			//1 for Visitors ,1 for Cargo ,>0 for Patients  
 	int ArrivalTime;		//The time which the entity has arrived
-	E_UserType Type;			//"Patients" , "Visitors" , "Cargo"
+	E_UserType Type;		//"Patients" , "Visitors" , "Cargo"
 	int Srcfloor;			//Source floor 
 	int Trgfloor;			//Target floor
+	int ServiceBegining;
 	int TargetTime;			// Target Time
 
 public:
@@ -26,6 +28,8 @@ public:
 	int getTrgfloor();
 	int getTargetTime() const;
 	void setTargetTime(int TT);
+	int getServiceTime() const;
+	void setServiceTime(int ST);
 	E_UserType getType();
 	~Pickable();
 

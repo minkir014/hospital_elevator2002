@@ -32,11 +32,15 @@ private:
 	int S;
 	int AutoS;
 
+	// AutoS
+
+	int numOfAutoS;
+
 	fstream InputFile;
 	fstream OutputFile;
 		
 	void IncrementTimeStep();
-	void ExecuteEvent();
+	void Simulate();
 	void OutputToScreen();
 public:
 	Hospital();
@@ -44,6 +48,7 @@ public:
 
 	Floor* getFloor(int number) const;
 	int getFloorCount() const;
+	int getS() const;
 
 	void OutputToFile();
 	void InitializeLists();
