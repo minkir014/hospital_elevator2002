@@ -5,6 +5,7 @@
 #include <iostream>
 #include <string>
 #include "Defs.h"
+#include "Elevator.h"
 using namespace std;
 class UI
 {
@@ -40,7 +41,9 @@ public:
 	
 	void PrintWaitingVisitors(int& sizeUp, int* Up, int& sizeDown, int* Down) const;
 
-	void PrintElevator(string & direction, string & state , int & capacity  , int &CurrrentLoad, char & type) const; // type is elevetor type . type[].  will be called for all elevator on that floor ;
+	void PrintElevatorHeader();
+
+	void PrintElevator(const Elevator* e) const; // type is elevetor type . type[].  will be called for all elevator on that floor ;
 
 	void PrintFloor(int& FloorNumber) const; // ----- floor 4 ------ / if floornum =0  ---- Ground ---- 
 

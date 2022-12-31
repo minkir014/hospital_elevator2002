@@ -129,8 +129,36 @@ void UI::PrintWaitingVisitors(int& sizeUp, int* Up, int& sizeDown, int* Down) co
     this->PrintUpsAndDowns(sizeUp, Up, sizeDown, Down);
 }
 void UI::PrintFloor(int& FloorNumber) const {
+    cout << endl;
     if (FloorNumber == 1)  cout << "------------------------ GROUND -------------------" << endl;
     else cout << "------------------------ Floor " << FloorNumber << "-------------------" << endl;
+}
+
+void UI::PrintElevatorHeader() {
+    cout << "Elevators: ";
+}
+
+void UI::PrintElevator(const Elevator* e) const {
+    if (e != nullptr) {
+        if (e->getType() == PE) cout << "P"; else if (e->getType() == VE) cout << "V"; else cout << "C";
+        cout << "[";
+
+        if (e->getState() == IDLE) cout << "none";
+        else if (e->getState() == Load)
+            if (e->getTargetFloor() - e->getCurrentFloor() > 0) cout << "up"; else cout << "down";
+        else
+            if (e->getPreviousState() == MovingDown) cout << "down"; else if (e->getPreviousState() == MovingUp) cout << "up";
+            else cout << "none";
+
+        cout << ", ";
+        if (e->getState() == IDLE) cout << "IDLE"; else if (e->getState() == AVAIL || e->getState() == Load) cout << "AVAIL";
+        else cout << "UNLOAD";
+
+        cout << ", " << e->getCapacity() << ", " << e->getNumberOfRiders() << "]  ";
+
+    }
+    else
+        cout << "None";
 }
 
 string UI::getOutputFileName() const {

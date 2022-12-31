@@ -3,21 +3,23 @@
 #include <math.h>
 
 PickablePtr::PickablePtr(Pickable* ptr, const Hospital* hos, bool tmp, bool stair) { 
-	this->ptr = ptr; temp = false; this->hos = hos; stairs = stair; completed = false;
+	this->ptr = ptr; temp = false; this->hos = hos; stairs = stair; completed = false; inService = false;
 }
 
 PickablePtr::PickablePtr(const PickablePtr& obj) { 
-	ptr = obj.ptr; hos = obj.hos; temp = false; stairs = obj.stairs; completed = false;
+	ptr = obj.ptr; hos = obj.hos; temp = false; stairs = obj.stairs; completed = false; inService = obj.inService;
 }
 
 PickablePtr::PickablePtr(int tempID) { 
-	ptr = new Pickable(tempID, 0, 0); temp = true; stairs = false; completed = false;
+	ptr = new Pickable(tempID, 0, 0); temp = true; stairs = false; completed = false; inService = false;
 }
 
 PickablePtr& PickablePtr::operator=(const PickablePtr& obj) {
 	if (temp)
 		delete ptr;
 	ptr = new Pickable(*obj.getPickablePtr());
+	delete obj.ptr;  /// Problematic ..............................................
+
 	temp = false;
 	hos = obj.hos;
 
@@ -82,9 +84,21 @@ bool PickablePtr::setStairs() {
 }
 
 bool PickablePtr::setCompleted() {
+	if (inService)
+		ptr->setServiceTime(hos->getTimeStep() - ptr->getServiceTime());
+
 	stairs = false;
+	inService = false;
 	completed = true;
 	ptr->setTargetTime(hos->getTimeStep());
+	return true;
+}
+
+bool PickablePtr::setInService() {
+	inService = true;
+	int priority = abs(ptr->getTrgfloor() - ptr->getSrcfloor()) * -1;
+	ptr->resetPriority(priority, true);
+	ptr->setServiceTime(hos->getTimeStep());
 	return true;
 }
 

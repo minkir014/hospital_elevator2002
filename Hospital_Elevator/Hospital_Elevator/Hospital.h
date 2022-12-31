@@ -17,9 +17,10 @@ class Hospital {
 private:
 	UI InterfaceController;
 
-	Elevator* PatientElevator;
-	Elevator* VisitorElevator;
-	Elevator* CargoElevator;
+	Elevator* ArrayOfElevators[3];
+	Elevator*& PatientElevator;
+	Elevator*& VisitorElevator;
+	Elevator*& CargoElevator;
 
 	Floor** Floors ;
 	int numOfFloors;
@@ -37,10 +38,15 @@ private:
 
 	fstream InputFile;
 	fstream OutputFile;
+
+	bool RecursionActivated;
 		
 	void IncrementTimeStep();
 	void Simulate();
 	void OutputToScreen();
+
+	int getNearestMove(int currentFloor, ElevatorState previous);
+
 public:
 	Hospital();
 	~Hospital();
@@ -56,8 +62,11 @@ public:
 
 	void ExecuteEvents();
 	bool stairPickable(PickablePtr& obj);
+	bool finishedPickable(PickablePtr& obj);
 
 	int getTimeStep() const;
 
-
+	void setRecursion(bool activated);
+	bool getRecursion() const;
+	void moveElevators(int start);
 };

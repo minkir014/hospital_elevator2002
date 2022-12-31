@@ -9,6 +9,7 @@ private:
 
 	bool stairs;
 	bool completed;
+	bool inService;
 
 	const Hospital* hos;
 	
@@ -28,6 +29,7 @@ public:
 	Pickable* getPickablePtr() const;
 	bool setStairs();
 	bool setCompleted();
+	bool setInService();
 
 	bool operator==(const PickablePtr obj);
 	bool operator>(PickablePtr obj);
