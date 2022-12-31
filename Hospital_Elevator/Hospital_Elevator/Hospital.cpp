@@ -32,9 +32,10 @@ void Hospital::ExecuteEvents() {
 
 	while (true) {
 
-		if (ev != nullptr && TimeStep == ev->getEventTime()) {
-			Events.Dequeue(ev);
+		while (ev != nullptr && TimeStep == ev->getEventTime()) {
+			if (!Events.Dequeue(ev)) break;
 			ev->execute(this);
+			Events.Peek(ev);
 		}
 
 		Simulate();
@@ -181,31 +182,33 @@ void Hospital::moveElevators(int start) {
 		}
 
 		else if (ArrayOfElevators[i]->getState() == IDLE) {
-			if ((Floors[ArrayOfElevators[i]->getCurrentFloor()]->GetUpHeapSize() > 0 &&
-				ArrayOfElevators[i]->getPreviousState() == MovingUp)) {
+			if (ArrayOfElevators[i]->getTimeOfLastFloor() - TimeStep == 3) {
+				if ((Floors[ArrayOfElevators[i]->getCurrentFloor()]->GetUpHeapSize() > 0 &&
+					ArrayOfElevators[i]->getPreviousState() == MovingUp)) {
 
-				PickablePtr temp = Floors[ArrayOfElevators[i]->getCurrentFloor()]->peekTopPriorityDown(type, -1);
-				if (temp == 0)
-					ArrayOfElevators[i]->UpdateState(TimeStep, ArrayOfElevators[i]->getTargetFloor(), numOfFloors, 0);
-				else
-					ArrayOfElevators[i]->UpdateState(TimeStep, ArrayOfElevators[i]->getCurrentFloor(), numOfFloors, 1);
+					PickablePtr temp = Floors[ArrayOfElevators[i]->getCurrentFloor()]->peekTopPriorityDown(type, -1);
+					if (temp == 0)
+						ArrayOfElevators[i]->UpdateState(TimeStep, ArrayOfElevators[i]->getTargetFloor(), numOfFloors, 0);
+					else
+						ArrayOfElevators[i]->UpdateState(TimeStep, ArrayOfElevators[i]->getCurrentFloor(), numOfFloors, 1);
 
 
-			}
-			else if ((Floors[ArrayOfElevators[i]->getCurrentFloor()]->GetdownHeapSize() > 0 &&
-				ArrayOfElevators[i]->getPreviousState() == MovingDown))
-			{
+				}
+				else if ((Floors[ArrayOfElevators[i]->getCurrentFloor()]->GetdownHeapSize() > 0 &&
+					ArrayOfElevators[i]->getPreviousState() == MovingDown))
+				{
 
-				PickablePtr temp = Floors[ArrayOfElevators[i]->getCurrentFloor()]->peekTopPriorityUp(type, -1);
-				if (temp == 0)
-					ArrayOfElevators[i]->UpdateState(TimeStep, ArrayOfElevators[i]->getTargetFloor(), numOfFloors, 0);
-				else
-					ArrayOfElevators[i]->UpdateState(TimeStep, ArrayOfElevators[i]->getCurrentFloor(), numOfFloors, 1);
-			}
+					PickablePtr temp = Floors[ArrayOfElevators[i]->getCurrentFloor()]->peekTopPriorityUp(type, -1);
+					if (temp == 0)
+						ArrayOfElevators[i]->UpdateState(TimeStep, ArrayOfElevators[i]->getTargetFloor(), numOfFloors, 0);
+					else
+						ArrayOfElevators[i]->UpdateState(TimeStep, ArrayOfElevators[i]->getCurrentFloor(), numOfFloors, 1);
+				}
 
-			else if (ArrayOfElevators[i]->getPreviousState() == AVAIL) {
-				ArrayOfElevators[i]->UpdateState(TimeStep, ArrayOfElevators[i]->getCurrentFloor(), numOfFloors, 0);
-				i--;
+				else if (ArrayOfElevators[i]->getPreviousState() == AVAIL) {
+					ArrayOfElevators[i]->UpdateState(TimeStep, ArrayOfElevators[i]->getCurrentFloor(), numOfFloors, 0);
+					i--;
+				}
 			}
 		}
 
@@ -333,7 +336,7 @@ void Hospital::OutputToScreen() {
 		int E[3] = { -1, -1, -1 };
 
 		for (int i = 0; i < 3; i++)
-			if (ArrayOfElevators[i]->getState() != MovingDown || ArrayOfElevators[i]->getState() != MovingUp)
+			if (ArrayOfElevators[i]->getState() != MovingDown && ArrayOfElevators[i]->getState() != MovingUp)
 				E[i] = ArrayOfElevators[i]->getCurrentFloor();
 		
 
@@ -361,13 +364,14 @@ void Hospital::OutputToScreen() {
 
 			InterfaceController.PrintElevatorHeader();
 
-			for (int j = 0; j < 3; j++)
+			int j = 0;
+			for (;j < 3; j++)
 				if (E[j] == i) {
 					InterfaceController.PrintElevator(ArrayOfElevators[j]);
 				}
 				else break;
 
-			if (E[0] == -1 && E[1] == -1 && E[2] == -1) InterfaceController.PrintElevator(nullptr);
+			if (j == 0) InterfaceController.PrintElevator(nullptr);
 
 			int s = i + 1;
 			InterfaceController.PrintFloor(s);

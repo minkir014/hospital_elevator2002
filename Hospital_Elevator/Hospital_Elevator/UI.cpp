@@ -147,7 +147,7 @@ void UI::PrintElevator(const Elevator* e) const {
         else if (e->getState() == Load)
             if (e->getTargetFloor() - e->getCurrentFloor() > 0) cout << "up"; else cout << "down";
         else
-            if (e->getPreviousState() == MovingDown) cout << "down"; else if (e->getPreviousState() == MovingUp) cout << "up";
+            if (e->getPreviousState() == MovingUp) cout << "up"; else if (e->getPreviousState() == MovingDown) cout << "down";
             else cout << "none";
 
         cout << ", ";

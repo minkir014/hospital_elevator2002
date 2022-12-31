@@ -18,7 +18,7 @@ PickablePtr& PickablePtr::operator=(const PickablePtr& obj) {
 	if (temp)
 		delete ptr;
 	ptr = new Pickable(*obj.getPickablePtr());
-	delete obj.ptr;  /// Problematic ..............................................
+	//delete obj.ptr;  /// Problematic ..............................................
 
 	temp = false;
 	hos = obj.hos;
