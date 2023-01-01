@@ -115,6 +115,6 @@ void PickablePtr::setPriority() {
 			ptr->resetPriority(hos->getTimeStep(), stairs);
 		else if (completed)
 			ptr->resetPriority(ptr->getTargetTime(), completed);
-		else  if (inService)
-			ptr->resetPriority((ptr->getTrgfloor() - ele -> getCurrentFloor()) * -1, true);
+		else if (inService)
+			ptr->resetPriority(abs(ptr->getTrgfloor() - ele -> getCurrentFloor()) * -1, true);
 }

@@ -194,7 +194,10 @@ void Elevator::UpdateState(const int& timestep, int Floor, const int& maxFloor, 
 			LastState = Load;
 		}
 		else {
-			loading(Floor - CurrentFloor > 0 ? MovingUp : MovingDown);
+			if (!loading(Floor - CurrentFloor > 0 ? MovingUp : MovingDown)) { 
+				state = ((Floor - CurrentFloor > 0) ? MovingUp : MovingDown);
+				LastState = Load;
+			}
 		}
 		timeOfLastFloor = timestep;
 	}
