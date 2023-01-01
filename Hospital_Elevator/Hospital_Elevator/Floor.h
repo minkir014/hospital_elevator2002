@@ -42,6 +42,8 @@ public:
 	void ValidateFirst(const LinkedHeap<PickablePtr>&, const PickablePtr& ptr, int UpOrDown);
 	PickablePtr getFirstVisitor();
 
+	void build();
+
 	bool isWaitingUp() const;
 	bool isWaitingDown() const;
 };

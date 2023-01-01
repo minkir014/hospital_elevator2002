@@ -32,6 +32,10 @@ void Hospital::ExecuteEvents() {
 
 	while (true) {
 
+		for (int i = 0; i < numOfFloors; i++) {
+			Floors[i]->build();
+		}
+
 		while (ev != nullptr && TimeStep == ev->getEventTime()) {
 			if (!Events.Dequeue(ev)) break;
 			ev->execute(this);
@@ -140,7 +144,7 @@ void Hospital::moveElevators(int start) {
 					if (ArrayOfElevators[i]->getNumberOfRiders() < ArrayOfElevators[i]->getCapacity())
 
 						ArrayOfElevators[i]->UpdateState(TimeStep, ArrayOfElevators[i]->getCurrentFloor() + 
-							ArrayOfElevators[i]->getState() == MovingUp ? 1 : -1, numOfFloors, 1);
+							((ArrayOfElevators[i]->getState() == MovingUp) ? 1 : -1), numOfFloors, 1);
 					else
 						ArrayOfElevators[i]->UpdateState(TimeStep, ArrayOfElevators[i]->getTargetFloor(), numOfFloors, 0);
 				}
@@ -167,7 +171,7 @@ void Hospital::moveElevators(int start) {
 				}
 				else
 					ArrayOfElevators[i]->UpdateState(TimeStep, ArrayOfElevators[i]->getCurrentFloor()
-						+ ArrayOfElevators[i]->getPreviousState() == MovingUp ? 1 : -1, numOfFloors, 0); // Nearest Floor. Change Direections
+						+ ((ArrayOfElevators[i]->getPreviousState() == MovingUp) ? 1 : -1), numOfFloors, 0); // Nearest Floor. Change Direections
 		}
 
 		else if (ArrayOfElevators[i]->getState() == Load) {

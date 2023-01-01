@@ -211,8 +211,10 @@ bool LinkedHeap<T>::removeObj(T& value) {
 	bool state = LH.Delete(V);
 
 	if (c == 1)
-		if (leftOrRight)
-			ptr->setLeftPtr(LH.root);
+		if (leftOrRight) {
+			ptr->setLeftPtr(ptr->getRight());
+			ptr->setRightPtr(LH.root);
+		}
 		else
 			ptr->setRightPtr(LH.root);
 

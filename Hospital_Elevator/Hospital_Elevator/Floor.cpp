@@ -86,6 +86,11 @@ int Floor::GetUpHeapSize() const { return Up.getCount(); }
 int Floor::GetdownHeapSize() const { return Down.getCount(); }
 int Floor::getCurrentFloor() const { return CurrentFloor; }
 
+void Floor::build() {
+	Up.ReBuild();
+	Down.ReBuild();
+}
+
 bool Floor::EnqueueUp(PickablePtr ptr) {
 	if (FirstVisitor[0] == 0 && ptr.getPickablePtr()->getType() == V)
 		FirstVisitor[0] = ptr;

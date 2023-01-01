@@ -7,7 +7,7 @@ PickablePtr::PickablePtr(Pickable* ptr, const Hospital* hos, bool tmp, bool stai
 }
 
 PickablePtr::PickablePtr(const PickablePtr& obj) { 
-	ptr = obj.ptr; hos = obj.hos; temp = false; stairs = obj.stairs; completed = false; inService = obj.inService;
+	ptr = obj.ptr; hos = obj.hos; temp = false; stairs = obj.stairs; completed = false; inService = obj.inService; ele = obj.ele;
 }
 
 PickablePtr::PickablePtr(int tempID) { 
@@ -22,6 +22,8 @@ PickablePtr& PickablePtr::operator=(const PickablePtr& obj) {
 
 	temp = false;
 	hos = obj.hos;
+
+	ele = obj.ele;
 
 	inService = obj.inService;
 	stairs = obj.stairs;
@@ -98,18 +100,21 @@ bool PickablePtr::setCompleted() {
 	return true;
 }
 
-bool PickablePtr::setInService() {
+bool PickablePtr::setInService(Elevator* e) {
 	inService = true;
-	int priority = abs(ptr->getTrgfloor() - ptr->getSrcfloor()) * -1;
+	ele = e;
+	int priority = abs(ptr->getTrgfloor() - e->getCurrentFloor()) * -1;
 	ptr->resetPriority(priority, true);
 	ptr->setServiceTime(hos->getTimeStep());
 	return true;
 }
 
 void PickablePtr::setPriority() {
-	if (!( * this == 0))
-		if (!stairs && !completed)
+	if (!(*this == 0))
+		if (!stairs && !completed && !inService)
 			ptr->resetPriority(hos->getTimeStep(), stairs);
 		else if (completed)
 			ptr->resetPriority(ptr->getTargetTime(), completed);
+		else  if (inService)
+			ptr->resetPriority((ptr->getTrgfloor() - ele -> getCurrentFloor()) * -1, true);
 }

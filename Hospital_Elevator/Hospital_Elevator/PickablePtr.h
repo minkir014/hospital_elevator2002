@@ -2,6 +2,7 @@
 #include "Pickable.h"
 
 class Hospital;
+class Elevator;
 class PickablePtr {
 private:
 	Pickable* ptr;
@@ -12,6 +13,7 @@ private:
 	bool inService;
 
 	const Hospital* hos;
+	Elevator* ele;
 	
 	void setPriority();
 public:
@@ -29,7 +31,7 @@ public:
 	Pickable* getPickablePtr() const;
 	bool setStairs();
 	bool setCompleted();
-	bool setInService();
+	bool setInService(Elevator* e);
 
 	bool operator==(const PickablePtr obj);
 	bool operator>(PickablePtr obj);

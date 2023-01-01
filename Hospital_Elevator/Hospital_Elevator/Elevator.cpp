@@ -329,7 +329,7 @@ bool Elevator::loading(ElevatorState stateOfImportance) {
 		}
 
 		if (!(loaded == 0)) {
-			loaded.setInService();
+			loaded.setInService(this);
 			Elevatorhead.Insert(loaded);
 			isItloaded = true;
 		}
