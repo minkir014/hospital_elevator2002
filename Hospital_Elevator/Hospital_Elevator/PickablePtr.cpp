@@ -23,6 +23,10 @@ PickablePtr& PickablePtr::operator=(const PickablePtr& obj) {
 	temp = false;
 	hos = obj.hos;
 
+	inService = obj.inService;
+	stairs = obj.stairs;
+	completed = obj.completed;
+
 	return *this;
 }
 

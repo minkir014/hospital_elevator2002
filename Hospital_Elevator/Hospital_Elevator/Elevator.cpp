@@ -126,7 +126,13 @@ void Elevator::UpdateState(const int& timestep, int Floor, const int& maxFloor, 
 	if (state == IDLE && (timestep - timeOfLastFloor) == 3) {
 		if (load) {
 			state = Load;
-			loading(LastState);
+			if (LastState == MovingDown)
+				loading(MovingUp);
+			else if (LastState == MovingUp)
+				loading(MovingDown);
+
+			else
+				loading(LastState);
 		}
 		else if (Floor - CurrentFloor > 0)
 			state = MovingUp;

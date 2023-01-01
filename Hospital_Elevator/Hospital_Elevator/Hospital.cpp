@@ -56,7 +56,17 @@ void Hospital::ExecuteEvents() {
 					a = false;
 					break;
 				}
-			if (a)
+
+			bool b = true;
+
+			for (int i = 0; i < 3; i++) {
+				if (ArrayOfElevators[i]->getNumberOfRiders() != 0) {
+					b = false;
+					break;
+				}
+			}
+
+			if (a && b)
 				break;
 		}
 
@@ -122,10 +132,10 @@ void Hospital::moveElevators(int start) {
 
 			if ((TimeStep - ArrayOfElevators[i]->getTimeOfLastFloor()) % ArrayOfElevators[i]->getSpeed() == 0) {
 
-				if ((Floors[ArrayOfElevators[i]->getCurrentFloor() + 1]->GetUpHeapSize() > 0 &&
-					ArrayOfElevators[i]->getState() == MovingUp) ||
-					(Floors[ArrayOfElevators[i]->getCurrentFloor() - 1]->GetdownHeapSize() > 0 &&
-						ArrayOfElevators[i]->getState() == MovingDown)) {
+				if ((ArrayOfElevators[i]->getState() == MovingUp && 
+					Floors[ArrayOfElevators[i]->getCurrentFloor() + 1]->GetUpHeapSize() > 0) ||
+					(ArrayOfElevators[i]->getState() == MovingDown) &&
+					Floors[ArrayOfElevators[i]->getCurrentFloor() - 1]->GetdownHeapSize() > 0) {
 
 					if (ArrayOfElevators[i]->getNumberOfRiders() < ArrayOfElevators[i]->getCapacity())
 
@@ -142,10 +152,10 @@ void Hospital::moveElevators(int start) {
 
 		else if (ArrayOfElevators[i]->getState() == Unload) {
 
-			if ((Floors[ArrayOfElevators[i]->getCurrentFloor()]->GetUpHeapSize() > 0 &&
-				ArrayOfElevators[i]->getPreviousState() == MovingUp) ||
-				(Floors[ArrayOfElevators[i]->getCurrentFloor()]->GetdownHeapSize() > 0 &&
-					ArrayOfElevators[i]->getPreviousState() == MovingDown)) {
+			if ((ArrayOfElevators[i]->getPreviousState() == MovingUp &&
+				Floors[ArrayOfElevators[i]->getCurrentFloor()]->GetUpHeapSize() > 0) ||
+				(ArrayOfElevators[i]->getPreviousState() == MovingDown &&
+					Floors[ArrayOfElevators[i]->getCurrentFloor()]->GetdownHeapSize() > 0)) {
 
 				ArrayOfElevators[i]->UpdateState(TimeStep, ArrayOfElevators[i]->getCurrentFloor() + 
 					ArrayOfElevators[i]->getPreviousState() == MovingUp ? 1 : -1, numOfFloors, 1);
@@ -163,12 +173,12 @@ void Hospital::moveElevators(int start) {
 		else if (ArrayOfElevators[i]->getState() == Load) {
 
 			if ((Floors[ArrayOfElevators[i]->getCurrentFloor()]->GetUpHeapSize() > 0 &&
-				(ArrayOfElevators[i]->getPreviousState() == MovingUp) || ArrayOfElevators[i]->getTargetFloor() - 
-				ArrayOfElevators[i]->getCurrentFloor() > 0) ||
+				(ArrayOfElevators[i]->getPreviousState() == MovingUp || ArrayOfElevators[i]->getTargetFloor() - 
+				ArrayOfElevators[i]->getCurrentFloor() > 0)) ||
 
 				(Floors[ArrayOfElevators[i]->getCurrentFloor()]->GetdownHeapSize() > 0 &&
-					(ArrayOfElevators[i]->getPreviousState() == MovingDown) || ArrayOfElevators[i]->getTargetFloor() - 
-					ArrayOfElevators[i]->getCurrentFloor() < 0)) {
+					(ArrayOfElevators[i]->getPreviousState() == MovingDown || ArrayOfElevators[i]->getTargetFloor() - 
+					ArrayOfElevators[i]->getCurrentFloor() < 0))) {
 
 				if (ArrayOfElevators[i]->getNumberOfRiders() < ArrayOfElevators[i]->getCapacity())
 					ArrayOfElevators[i]->UpdateState(TimeStep, ArrayOfElevators[i]->getCurrentFloor(), numOfFloors, 1);
@@ -182,8 +192,8 @@ void Hospital::moveElevators(int start) {
 		}
 
 		else if (ArrayOfElevators[i]->getState() == IDLE) {
-			if (ArrayOfElevators[i]->getTimeOfLastFloor() - TimeStep == 3) {
-				if ((Floors[ArrayOfElevators[i]->getCurrentFloor()]->GetUpHeapSize() > 0 &&
+			if (TimeStep - ArrayOfElevators[i]->getTimeOfLastFloor() == 3) {
+				if ((Floors[ArrayOfElevators[i]->getCurrentFloor()]->GetdownHeapSize() > 0 &&
 					ArrayOfElevators[i]->getPreviousState() == MovingUp)) {
 
 					PickablePtr temp = Floors[ArrayOfElevators[i]->getCurrentFloor()]->peekTopPriorityDown(type, -1);
@@ -194,7 +204,7 @@ void Hospital::moveElevators(int start) {
 
 
 				}
-				else if ((Floors[ArrayOfElevators[i]->getCurrentFloor()]->GetdownHeapSize() > 0 &&
+				else if ((Floors[ArrayOfElevators[i]->getCurrentFloor()]->GetUpHeapSize() > 0 &&
 					ArrayOfElevators[i]->getPreviousState() == MovingDown))
 				{
 
@@ -369,7 +379,6 @@ void Hospital::OutputToScreen() {
 				if (E[j] == i) {
 					InterfaceController.PrintElevator(ArrayOfElevators[j]);
 				}
-				else break;
 
 			if (j == 0) InterfaceController.PrintElevator(nullptr);
 
