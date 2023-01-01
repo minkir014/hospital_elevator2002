@@ -384,7 +384,7 @@ void Hospital::OutputToScreen() {
 					InterfaceController.PrintElevator(ArrayOfElevators[j]);
 				}
 
-			if (j == 0) InterfaceController.PrintElevator(nullptr);
+			if (E[0] != i && E[1] != i && E[2] != i) InterfaceController.PrintElevator(nullptr);
 
 			int s = i + 1;
 			InterfaceController.PrintFloor(s);
