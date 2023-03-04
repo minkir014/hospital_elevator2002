@@ -3,5 +3,5 @@ Hospital_Elevator/.vs/**
 Hospital_Elevator/x64/**
 Hospital_Elevator/Hospital_Elevator/x64/**
 Hospital_Elevator/Hospital_Elevator/HeapTrials.cpp
-
-./**.rar
+*.rar
+Hospital_Elevator/ID.txt
